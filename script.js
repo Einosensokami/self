@@ -47,7 +47,7 @@ const translations = {
 
     "exp.title": "經歷",
     "exp.subtitle": "走過的路。",
-    "exp.e1.role": "學生 (就讀中)",
+    "exp.e1.role": "人工智慧應用工程學士學位學程 (就讀中)",
     "exp.e1.org": "國立臺中科技大學",
     "exp.e1.desc": "專注於資訊技術、人工智慧應用及相關學科學習。",
     "exp.e2.role": "助教",
@@ -97,7 +97,7 @@ const translations = {
 
     "exp.title": "Experience",
     "exp.subtitle": "The path so far.",
-    "exp.e1.role": "Student (Enrolled)",
+    "exp.e1.role": "Bachelor Degree Program of Artificial Intelligence Application Engineering (Enrolled)",
     "exp.e1.org": "National Taichung University of Science and Technology",
     "exp.e1.desc": "Focusing on information technology, AI applications, and related software engineering studies.",
     "exp.e2.role": "Teaching Assistant",
