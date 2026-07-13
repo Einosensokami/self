@@ -47,9 +47,12 @@ const translations = {
 
     "exp.title": "經歷",
     "exp.subtitle": "走過的路。",
-    "exp.e1.role": "助教",
-    "exp.e1.org": "智慧物流青年AI實戰養成班",
-    "exp.e1.desc": "協助學員進行 AI 實戰專案開發與演算法應用指導。",
+    "exp.e1.role": "學生 (就讀中)",
+    "exp.e1.org": "國立臺中科技大學",
+    "exp.e1.desc": "專注於資訊技術、人工智慧應用及相關學科學習。",
+    "exp.e2.role": "助教",
+    "exp.e2.org": "智慧物流青年AI實戰養成班",
+    "exp.e2.desc": "協助學員進行 AI 實戰專案開發與演算法應用指導。",
 
     "contact.title": "與我聯絡",
     "contact.subtitle": "想合作、聊聊天，或只是想打聲招呼 — 都歡迎。",
@@ -94,9 +97,12 @@ const translations = {
 
     "exp.title": "Experience",
     "exp.subtitle": "The path so far.",
-    "exp.e1.role": "Teaching Assistant",
-    "exp.e1.org": "Smart Logistics Youth AI Practical Training Program",
-    "exp.e1.desc": "Assisted students with AI practical project development and algorithm application guidance.",
+    "exp.e1.role": "Student (Enrolled)",
+    "exp.e1.org": "National Taichung University of Science and Technology",
+    "exp.e1.desc": "Focusing on information technology, AI applications, and related software engineering studies.",
+    "exp.e2.role": "Teaching Assistant",
+    "exp.e2.org": "Smart Logistics Youth AI Practical Training Program",
+    "exp.e2.desc": "Assisted students with AI practical project development and algorithm application guidance.",
 
     "contact.title": "Get in touch",
     "contact.subtitle": "For collaborations, a chat, or just to say hi — my inbox is open.",
