@@ -21,7 +21,7 @@ const translations = {
     "hero.eyebrow": "嗨，你好，我是",
     "hero.name": "吳秉翔",
     "hero.subtitle": "AI應用規劃師",
-    "hero.ctaPrimary": "看我的作品",
+    "hero.ctaPrimary": "看我的技能",
     "hero.ctaSecondary": "與我聯絡",
 
     "skills.title": "技能與專長",
@@ -71,7 +71,7 @@ const translations = {
     "hero.eyebrow": "Hi, I'm",
     "hero.name": "吳秉翔 (John Wu)",
     "hero.subtitle": "AI Application Planner",
-    "hero.ctaPrimary": "See my work",
+    "hero.ctaPrimary": "See my skills",
     "hero.ctaSecondary": "Get in touch",
 
     "skills.title": "Skills",
