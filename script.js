@@ -12,14 +12,14 @@
 --------------------------------- */
 const translations = {
   zh: {
-    brand: "你的名字",
+    brand: "永恆戰神 Einosensokami",
     "nav.skills": "技能",
     "nav.projects": "作品",
     "nav.experience": "經歷",
     "nav.contact": "聯絡",
 
     "hero.eyebrow": "嗨，你好，我是",
-    "hero.name": "你的名字",
+    "hero.name": "吳秉翔",
     "hero.subtitle": "一句話介紹你自己 —— 例：前端工程師 / 喜歡把複雜的問題變得簡單。",
     "hero.ctaPrimary": "看我的作品",
     "hero.ctaSecondary": "與我聯絡",
