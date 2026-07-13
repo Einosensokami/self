@@ -20,7 +20,7 @@ const translations = {
 
     "hero.eyebrow": "嗨，你好，我是",
     "hero.name": "吳秉翔",
-    "hero.subtitle": "一句話介紹你自己 —— 例：前端工程師 / 喜歡把複雜的問題變得簡單。",
+    "hero.subtitle": "AI應用規劃師",
     "hero.ctaPrimary": "看我的作品",
     "hero.ctaSecondary": "與我聯絡",
 
@@ -73,7 +73,7 @@ const translations = {
 
     "hero.eyebrow": "Hi, I'm",
     "hero.name": "吳秉翔 (John Wu)",
-    "hero.subtitle": "A one-line intro about you — e.g. Front-end engineer / I like making complex things simple.",
+    "hero.subtitle": "AI Application Planner",
     "hero.ctaPrimary": "See my work",
     "hero.ctaSecondary": "Get in touch",
 
