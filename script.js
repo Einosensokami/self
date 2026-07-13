@@ -65,14 +65,14 @@ const translations = {
   },
 
   en: {
-    brand: "Your Name",
+    brand: "永恆戰神 Einosensokami",
     "nav.skills": "Skills",
     "nav.projects": "Work",
     "nav.experience": "Experience",
     "nav.contact": "Contact",
 
     "hero.eyebrow": "Hi, I'm",
-    "hero.name": "Your Name",
+    "hero.name": "吳秉翔 (John Wu)",
     "hero.subtitle": "A one-line intro about you — e.g. Front-end engineer / I like making complex things simple.",
     "hero.ctaPrimary": "See my work",
     "hero.ctaSecondary": "Get in touch",
