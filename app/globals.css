@@ -156,21 +156,28 @@
   position: relative;
   min-height: 100dvh;
   padding: 120px 0 100px;
-  overflow: hidden;
   isolation: isolate;
   background: hsl(var(--background));
   color: hsl(var(--foreground));
 }
 
 .data-grid-hero .grid-container {
-  position: absolute;
-  inset: 0;
+  /* Sticky: stays at viewport top while the hero section is in view,
+     so the animated background feels "fixed" while the content scrolls.
+     Scrolls away naturally once the hero scrolls past. */
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100dvh;
   z-index: 0;
   pointer-events: none;
   display: grid;
 }
 
 .data-grid-hero .grid-cell {
+  position: relative;
+  z-index: 0;
   background-color: currentColor;
   border-radius: 1px;
   animation: cell-pulse var(--duration, 5s) ease-in-out infinite alternate;
@@ -183,8 +190,8 @@
   to   { opacity: var(--opacity-max, 0.6);  }
 }
 
-/* 滑鼠發光 */
-.data-grid-hero::before {
+/* 滑鼠發光（掛在 sticky 的 .grid-container 上，跟著網格一起固定） */
+.data-grid-hero .grid-container::before {
   content: "";
   position: absolute;
   inset: 0;
@@ -429,6 +436,6 @@
     animation: none;
     opacity: var(--opacity-max, 0.4);
   }
-  .data-grid-hero::before { transition: none; }
+  .data-grid-hero .grid-container::before { transition: none; }
   .data-grid-hero .control-panel { animation: none; }
 }
