@@ -33,8 +33,6 @@ const COLORS = [
 const ANIMS: AnimationType[] = ["pulse", "wave", "random"];
 
 export function SectionGridPage() {
-  const { t } = useLang();
-
   const [cfg, setCfg] = useState<Cfg>({
     rows: 25,
     cols: 35,
@@ -99,25 +97,7 @@ export function SectionGridPage() {
       opacityMax={cfg.opacityMax}
       background="hsl(var(--background))"
     >
-      {/* Hero intro（h1 / p / buttons） */}
-      <div className="hero-intro">
-        <h1>{t["hero.title"]}</h1>
-        <p>{t["hero.desc"]}</p>
-        <div className="buttons">
-          <a href="#skills" className="button">
-            {t["hero.ctaPrimary"]}
-          </a>
-          <button
-            type="button"
-            className="button-outline"
-            onClick={() => setPanelOpen(true)}
-          >
-            {t["hero.controls"]}
-          </button>
-        </div>
-      </div>
-
-      {/* 其它區塊 — 全部塞進同一個動態背景裡 */}
+      {/* 所有區塊從這裡開始 — hero intro 已移除 */}
       <SectionSkills />
       <SectionExperience />
       <SectionContact />

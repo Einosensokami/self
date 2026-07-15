@@ -155,7 +155,7 @@
 
   position: relative;
   min-height: 100dvh;
-  padding: 120px 0 100px;
+  padding: 56px 0 60px;
   isolation: isolate;
   background: hsl(var(--background));
   color: hsl(var(--foreground));
@@ -213,6 +213,7 @@
   z-index: 2;
 }
 
+/* hero intro（保留 .hero-intro class 與樣式以便日後恢復） */
 .data-grid-hero .hero-intro {
   max-width: 720px;
   margin-inline: auto;
