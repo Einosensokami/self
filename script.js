@@ -23,6 +23,23 @@ const translations = {
     "hero.subtitle": "AI應用規劃師",
     "hero.ctaPrimary": "看我的技能",
     "hero.ctaSecondary": "與我聯絡",
+    "hero.controls": "控制面板 (H)",
+
+    "panel.title": "網格控制",
+    "panel.rows": "行數",
+    "panel.cols": "列數",
+    "panel.spacing": "間距",
+    "panel.duration": "週期 (秒)",
+    "panel.animation": "動畫類型",
+    "panel.animation.pulse": "由中心脈動",
+    "panel.animation.wave": "波紋",
+    "panel.animation.random": "隨機",
+    "panel.pulseEffect": "脈動效果",
+    "panel.mouseGlow": "滑鼠發光",
+    "panel.opacityMin": "最小透明度",
+    "panel.opacityMax": "最大透明度",
+    "panel.randomize": "隨機組合 (R)",
+    "panel.close": "關閉 (H)",
 
     "skills.title": "技能與專長",
     "skills.subtitle": "我專注於以 AI 工具進行開發、規劃與日常工作流優化。",
@@ -73,6 +90,23 @@ const translations = {
     "hero.subtitle": "AI Application Planner",
     "hero.ctaPrimary": "See my skills",
     "hero.ctaSecondary": "Get in touch",
+    "hero.controls": "Controls (H)",
+
+    "panel.title": "Grid Controls",
+    "panel.rows": "Rows",
+    "panel.cols": "Columns",
+    "panel.spacing": "Spacing",
+    "panel.duration": "Duration (s)",
+    "panel.animation": "Animation Type",
+    "panel.animation.pulse": "Pulse from Center",
+    "panel.animation.wave": "Wave",
+    "panel.animation.random": "Random",
+    "panel.pulseEffect": "Pulse Effect",
+    "panel.mouseGlow": "Mouse Glow",
+    "panel.opacityMin": "Opacity Min",
+    "panel.opacityMax": "Opacity Max",
+    "panel.randomize": "Randomize (R)",
+    "panel.close": "Close (H)",
 
     "skills.title": "Skills",
     "skills.subtitle": "Focusing on AI-driven development, optimization, and workflow planning.",
@@ -217,6 +251,222 @@ function setupFooterYear() {
   if (el) el.textContent = new Date().getFullYear();
 }
 
+/* ---------- 8. DataGridHero · 動態網格 ----------
+   復刻 data-grid-hero.tsx 的效果：
+   - rows × cols 網格，cell 顏色與透明度由 cfg 決定
+   - 三種 pulse 模式：pulse（由中心向外）、wave（斜角波紋）、random
+   - 滑鼠發光追蹤
+   - 控制面板（sliders + toggle + select）
+   - 鍵盤快捷鍵 H（開關面板）/ R（隨機）
+----------------------------------------- */
+function setupDataGridHero() {
+  const hero = document.querySelector(".data-grid-hero");
+  if (!hero) return;
+
+  const grid = document.getElementById("hero-bg-grid");
+  const mouseGlow = document.getElementById("hero-mouse-glow");
+  const panel = document.getElementById("hero-control-panel");
+  const toggle = document.getElementById("hero-controls-toggle");
+  if (!grid || !panel || !toggle) return;
+
+  // 預設設定
+  const cfg = {
+    rows: 25,
+    cols: 35,
+    spacing: 4,
+    duration: 5,
+    color: "hsl(150, 100%, 50%)",
+    animationType: "pulse",
+    pulseEffect: true,
+    mouseGlow: true,
+    opacityMin: 0.05,
+    opacityMax: 0.6,
+  };
+
+  // ---- 工具 ----
+  const rand = (min, max) => Math.random() * (max - min) + min;
+
+  // 依照 cfg 把每個 cell 加上 --delay / --duration / --opacity-* 變數
+  function buildGrid() {
+    grid.style.gridTemplateColumns = `repeat(${cfg.cols}, 1fr)`;
+    grid.style.gridTemplateRows = `repeat(${cfg.rows}, 1fr)`;
+    grid.style.gap = `${cfg.spacing}px`;
+    grid.style.color = cfg.color;
+
+    const centerRow = Math.floor(cfg.rows / 2);
+    const centerCol = Math.floor(cfg.cols / 2);
+    const frag = document.createDocumentFragment();
+
+    for (let r = 0; r < cfg.rows; r++) {
+      for (let c = 0; c < cfg.cols; c++) {
+        const cell = document.createElement("div");
+        cell.className = "grid-cell";
+
+        if (cfg.pulseEffect) {
+          let delay;
+          if (cfg.animationType === "wave") {
+            delay = (r + c) * 0.1;
+          } else if (cfg.animationType === "random") {
+            delay = Math.random() * cfg.duration;
+          } else {
+            // pulse: 由中心向外
+            const dr = Math.abs(r - centerRow);
+            const dc = Math.abs(c - centerCol);
+            delay = Math.sqrt(dr * dr + dc * dc) * 0.2;
+          }
+          cell.style.setProperty("--delay", `${delay.toFixed(3)}s`);
+          cell.style.setProperty("--duration", `${cfg.duration}s`);
+          cell.style.setProperty("--opacity-min", String(cfg.opacityMin));
+          cell.style.setProperty("--opacity-max", String(cfg.opacityMax));
+        } else {
+          cell.classList.add("no-pulse");
+          cell.style.setProperty("--opacity-min", String(cfg.opacityMin));
+        }
+
+        frag.appendChild(cell);
+      }
+    }
+    grid.replaceChildren(frag);
+  }
+
+  // 把 cfg 同步回 UI（給隨機 / 雙語切換後初始化用）
+  function syncUIToCfg() {
+    panel.querySelectorAll("[data-key]").forEach((el) => {
+      const key = el.dataset.key;
+      if (el.tagName === "INPUT" && el.type === "range") {
+        el.value = cfg[key];
+      } else if (el.tagName === "SELECT") {
+        el.value = cfg[key];
+      } else if (el.getAttribute("role") === "switch") {
+        el.setAttribute("aria-checked", String(!!cfg[key]));
+      }
+    });
+    // 同步數字顯示
+    panel.querySelectorAll("[data-display]").forEach((el) => {
+      const key = el.dataset.display;
+      const v = cfg[key];
+      const decimals =
+        key === "duration" || key === "opacityMin" || key === "opacityMax" ? 2 : 0;
+      el.textContent = Number(v).toFixed(decimals);
+    });
+  }
+
+  function setMouseGlowOpacity() {
+    if (!mouseGlow) return;
+    mouseGlow.style.setProperty(
+      "--mouse-glow-opacity",
+      cfg.mouseGlow ? "1" : "0"
+    );
+  }
+
+  // ---- 滑鼠發光追蹤 ----
+  if (mouseGlow) {
+    hero.addEventListener("mousemove", (e) => {
+      const rect = hero.getBoundingClientRect();
+      mouseGlow.style.setProperty("--mouse-x", `${e.clientX - rect.left}px`);
+      mouseGlow.style.setProperty("--mouse-y", `${e.clientY - rect.top}px`);
+    });
+  }
+
+  // ---- 控制面板開關 ----
+  function openPanel() {
+    panel.hidden = false;
+    toggle.setAttribute("aria-expanded", "true");
+  }
+  function closePanel() {
+    panel.hidden = true;
+    toggle.setAttribute("aria-expanded", "false");
+  }
+  function togglePanel() {
+    panel.hidden ? openPanel() : closePanel();
+  }
+
+  toggle.addEventListener("click", togglePanel);
+  const closeBtn1 = document.getElementById("hero-panel-close");
+  const closeBtn2 = document.getElementById("hero-panel-close-2");
+  if (closeBtn1) closeBtn1.addEventListener("click", closePanel);
+  if (closeBtn2) closeBtn2.addEventListener("click", closePanel);
+
+  // ---- 滑桿 / 下拉 / 開關 接線 ----
+  panel.querySelectorAll('input[type="range"][data-key]').forEach((input) => {
+    const key = input.dataset.key;
+    const decimals =
+      key === "duration" || key === "opacityMin" || key === "opacityMax" ? 2 : 0;
+
+    input.addEventListener("input", (e) => {
+      const val = parseFloat(e.target.value);
+      cfg[key] = val;
+      const display = panel.querySelector(`[data-display="${key}"]`);
+      if (display) display.textContent = val.toFixed(decimals);
+      buildGrid();
+    });
+  });
+
+  panel.querySelectorAll("select[data-key]").forEach((sel) => {
+    sel.addEventListener("change", (e) => {
+      cfg[sel.dataset.key] = e.target.value;
+      buildGrid();
+    });
+  });
+
+  panel.querySelectorAll('button[role="switch"][data-key]').forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const key = btn.dataset.key;
+      cfg[key] = !cfg[key];
+      btn.setAttribute("aria-checked", String(cfg[key]));
+      if (key === "mouseGlow") setMouseGlowOpacity();
+      buildGrid();
+    });
+  });
+
+  // ---- 隨機化 ----
+  function randomize() {
+    const colors = [
+      "hsl(150, 100%, 50%)",
+      "hsl(300, 100%, 70%)",
+      "hsl(180, 100%, 60%)",
+      "hsl(50, 100%, 60%)",
+      "hsl(25, 100%, 60%)",
+    ];
+    const anims = ["pulse", "wave", "random"];
+    cfg.rows = Math.floor(rand(15, 40));
+    cfg.cols = Math.floor(rand(15, 40));
+    cfg.spacing = Math.floor(rand(2, 8));
+    cfg.duration = Number(rand(3, 10).toFixed(1));
+    cfg.color = colors[Math.floor(Math.random() * colors.length)];
+    cfg.animationType = anims[Math.floor(Math.random() * anims.length)];
+    cfg.pulseEffect = Math.random() > 0.2;
+    cfg.mouseGlow = Math.random() > 0.3;
+    cfg.opacityMin = Number(rand(0.05, 0.2).toFixed(2));
+    cfg.opacityMax = Number(rand(0.5, 1.0).toFixed(2));
+    syncUIToCfg();
+    setMouseGlowOpacity();
+    buildGrid();
+  }
+  const randBtn = document.getElementById("hero-randomize");
+  if (randBtn) randBtn.addEventListener("click", randomize);
+
+  // ---- 鍵盤快捷鍵 ----
+  window.addEventListener("keydown", (e) => {
+    const tag = (e.target.tagName || "").toLowerCase();
+    if (tag === "input" || tag === "select" || tag === "textarea") return;
+    if (e.metaKey || e.ctrlKey || e.altKey) return;
+    const k = e.key.toLowerCase();
+    if (k === "h") {
+      e.preventDefault();
+      togglePanel();
+    } else if (k === "r") {
+      e.preventDefault();
+      randomize();
+    }
+  });
+
+  // ---- 初始化 ----
+  syncUIToCfg();
+  setMouseGlowOpacity();
+  buildGrid();
+}
+
 /* ---------- 初始化 ---------- */
 document.addEventListener("DOMContentLoaded", () => {
   setupLanguageToggle();
@@ -224,4 +474,5 @@ document.addEventListener("DOMContentLoaded", () => {
   setupMobileMenu();
   setupScrollReveal();
   setupFooterYear();
+  setupDataGridHero();
 });

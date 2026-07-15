@@ -493,3 +493,307 @@ h1, h2, h3 {
   }
   .reveal { opacity: 1; transform: none; }
 }
+
+/* ============================================================
+   DataGridHero · 深色霓虹動態網格
+   （覆寫原本的米白 hero，僅作用於 .data-grid-hero 區塊）
+   ============================================================ */
+
+.data-grid-hero {
+  position: relative;
+  min-height: calc(100vh - 64px);
+  padding: 120px 0 100px;
+  overflow: hidden;
+  isolation: isolate;
+  background: hsl(220, 20%, 10%);
+  color: hsl(0, 0%, 100%);
+  border-bottom: 1px solid hsl(220, 20%, 18%);
+}
+
+/* 動態網格容器 */
+.hero-bg-grid {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  display: grid;
+}
+
+.grid-cell {
+  background-color: currentColor;
+  border-radius: 1px;
+  animation: cell-pulse var(--duration, 5s) ease-in-out infinite alternate;
+  animation-delay: var(--delay, 0s);
+  opacity: var(--opacity-min, 0.05);
+}
+
+.grid-cell.no-pulse {
+  animation: none;
+  opacity: var(--opacity-min, 0.05);
+}
+
+@keyframes cell-pulse {
+  from { opacity: var(--opacity-min, 0.05); }
+  to   { opacity: var(--opacity-max, 0.6);  }
+}
+
+/* 滑鼠發光層 */
+.hero-mouse-glow {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: radial-gradient(
+    circle 240px at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    hsl(150, 100%, 50% / 0.18) 0%,
+    transparent 65%
+  );
+  opacity: var(--mouse-glow-opacity, 1);
+  mix-blend-mode: screen;
+  transition: opacity 400ms ease;
+}
+
+/* Hero 內容（在網格之上） */
+.data-grid-hero .hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+.data-grid-hero .eyebrow {
+  color: hsl(150, 100%, 60%);
+}
+
+.data-grid-hero .hero-title {
+  background: linear-gradient(90deg, hsl(150, 100%, 70%), hsl(180, 100%, 75%));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+.data-grid-hero .hero-subtitle {
+  color: hsl(0, 0%, 80%);
+}
+
+.data-grid-hero .btn-primary {
+  background: hsl(150, 100%, 50%);
+  color: hsl(220, 20%, 10%);
+  font-weight: 700;
+  border: 1px solid transparent;
+}
+.data-grid-hero .btn-primary:hover { background: hsl(150, 100%, 60%); }
+
+.data-grid-hero .btn-ghost {
+  background: transparent;
+  border-color: hsl(150, 100%, 50%);
+  color: hsl(150, 100%, 70%);
+}
+.data-grid-hero .btn-ghost:hover {
+  background: hsl(150, 100%, 50%);
+  color: hsl(220, 20%, 10%);
+  border-color: hsl(150, 100%, 50%);
+}
+
+/* 控制面板開關按鈕 */
+.hero-controls-toggle {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 5;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.45);
+  border: 1px solid hsl(150, 100%, 50%);
+  color: hsl(150, 100%, 70%);
+  font-size: 0.78rem;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: background 200ms ease, color 200ms ease;
+}
+.hero-controls-toggle:hover {
+  background: hsl(150, 100%, 50%);
+  color: hsl(220, 20%, 10%);
+}
+
+/* 控制面板本身 */
+.control-panel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 320px;
+  max-width: 100%;
+  background: rgba(15, 18, 25, 0.94);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-left: 1px solid hsl(150, 100%, 30%);
+  padding: 28px 22px;
+  z-index: 10;
+  overflow-y: auto;
+  color: hsl(0, 0%, 90%);
+  font-size: 0.9rem;
+  font-family: var(--font-sans);
+  animation: panel-slide-in 280ms cubic-bezier(.2,.7,.2,1);
+}
+.control-panel[hidden] { display: none; }
+
+@keyframes panel-slide-in {
+  from { transform: translateX(100%); opacity: 0; }
+  to   { transform: none; opacity: 1; }
+}
+
+.panel-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 22px;
+}
+.panel-head h3 {
+  margin: 0;
+  font-family: var(--font-serif);
+  color: hsl(150, 100%, 70%);
+  font-size: 1.1rem;
+}
+.panel-close {
+  background: transparent;
+  border: 0;
+  color: hsl(0, 0%, 70%);
+  font-size: 1.6rem;
+  line-height: 1;
+  padding: 0 6px;
+  cursor: pointer;
+  transition: color 200ms;
+}
+.panel-close:hover { color: hsl(150, 100%, 70%); }
+
+.panel-control {
+  display: block;
+  margin-bottom: 16px;
+  font-size: 0.82rem;
+  color: hsl(0, 0%, 75%);
+}
+.panel-control .label-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 6px;
+}
+.panel-control .value {
+  color: hsl(150, 100%, 70%);
+  font-variant-numeric: tabular-nums;
+  font-family: var(--font-sans);
+  font-weight: 500;
+}
+.panel-control input[type="range"] {
+  width: 100%;
+  accent-color: hsl(150, 100%, 50%);
+}
+.panel-control select {
+  width: 100%;
+  padding: 7px 10px;
+  background: hsl(220, 20%, 18%);
+  color: hsl(0, 0%, 95%);
+  border: 1px solid hsl(220, 20%, 25%);
+  border-radius: 4px;
+  font: inherit;
+  cursor: pointer;
+}
+.panel-control select:focus {
+  outline: 2px solid hsl(150, 100%, 50%);
+  outline-offset: 1px;
+}
+
+/* 切換開關（toggle） */
+.toggle-control {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.toggle-control button[role="switch"] {
+  position: relative;
+  width: 38px;
+  height: 22px;
+  border-radius: 999px;
+  background: hsl(220, 20%, 25%);
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  transition: background 200ms ease;
+  flex-shrink: 0;
+}
+.toggle-control button[role="switch"] span {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: hsl(0, 0%, 100%);
+  transition: transform 200ms cubic-bezier(.2,.7,.2,1);
+}
+.toggle-control button[role="switch"][aria-checked="true"] {
+  background: hsl(150, 100%, 50%);
+}
+.toggle-control button[role="switch"][aria-checked="true"] span {
+  transform: translateX(16px);
+}
+
+/* 面板底部按鈕 */
+.panel-buttons {
+  display: flex;
+  gap: 8px;
+  margin-top: 22px;
+}
+.panel-buttons button {
+  flex: 1;
+  padding: 9px 10px;
+  border: 1px solid hsl(150, 100%, 50%);
+  background: transparent;
+  color: hsl(150, 100%, 70%);
+  border-radius: 6px;
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: background 200ms ease, color 200ms ease;
+}
+.panel-buttons button:hover {
+  background: hsl(150, 100%, 50%);
+  color: hsl(220, 20%, 10%);
+}
+
+/* DataGridHero 在手機版 */
+@media (max-width: 720px) {
+  .data-grid-hero {
+    min-height: calc(100vh - 56px);
+    padding: 80px 0 60px;
+  }
+  .hero-controls-toggle {
+    top: 12px;
+    right: 12px;
+    font-size: 0.7rem;
+    padding: 6px 10px;
+  }
+  .control-panel {
+    width: 100%;
+    top: auto;
+    max-height: 70vh;
+    border-left: 0;
+    border-top: 1px solid hsl(150, 100%, 30%);
+  }
+}
+
+/* prefers-reduced-motion：保留靜態網格，停止 pulse */
+@media (prefers-reduced-motion: reduce) {
+  .grid-cell {
+    animation: none;
+    opacity: var(--opacity-max, 0.4);
+  }
+  .hero-mouse-glow { transition: none; }
+  .control-panel { animation: none; }
+}
