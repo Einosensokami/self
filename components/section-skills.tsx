@@ -47,7 +47,7 @@ export function SectionSkills() {
     <section id="skills" className="py-24">
       <div className="mx-auto max-w-[980px] px-6">
         <header className="mb-12">
-          <h2 className="text-3xl md:text-4xl font-serif font-bold tracking-tight">
+          <h2 className="text-3xl md:text-4xl font-serif font-bold tracking-tight text-foreground">
             {t["skills.title"]}
           </h2>
           <p className="mt-2 text-muted-foreground max-w-2xl">
@@ -70,7 +70,7 @@ export function SectionSkills() {
                   return (
                     <li
                       key={`${g.titleKey}-${i}`}
-                      className="rounded-full border border-border px-3 py-1 text-sm bg-background"
+                      className="rounded-full border border-border px-3 py-1 text-sm bg-card/60 backdrop-blur-sm transition-colors hover:border-foreground hover:text-foreground"
                     >
                       {text}
                     </li>

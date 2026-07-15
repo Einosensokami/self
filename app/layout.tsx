@@ -40,7 +40,7 @@ export default function RootLayout({
   return (
     <html
       lang="zh-Hant"
-      className={`${inter.variable} ${notoSansTC.variable} ${notoSerifTC.variable} h-full antialiased`}
+      className={`dark ${inter.variable} ${notoSansTC.variable} ${notoSerifTC.variable} h-full antialiased`}
       suppressHydrationWarning
     >
       <body

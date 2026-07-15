@@ -208,15 +208,19 @@
 }
 
 .data-grid-hero .hero-content {
+  /* 不再限制寬度 / 置中 — 改由各 section 自己撐寬度 */
   position: relative;
   z-index: 2;
+}
+
+.data-grid-hero .hero-intro {
   max-width: 720px;
   margin-inline: auto;
-  padding-inline: 24px;
+  padding: 60px 24px 40px;
   text-align: left;
 }
 
-.data-grid-hero .hero-content h1 {
+.data-grid-hero .hero-intro h1 {
   font-size: var(--font-7xl);
   font-weight: var(--font-bold);
   letter-spacing: -0.01em;
@@ -229,7 +233,7 @@
   margin: 0 0 16px;
 }
 
-.data-grid-hero .hero-content p {
+.data-grid-hero .hero-intro p {
   font-size: var(--font-lg);
   color: hsl(var(--foreground-muted));
   margin: 0 0 28px;

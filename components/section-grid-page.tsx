@@ -3,6 +3,10 @@
 import { useCallback, useEffect, useState } from "react";
 import DataGridHero from "@/components/ui/data-grid-hero";
 import { useLang } from "@/components/lang-provider";
+import { SectionSkills } from "@/components/section-skills";
+import { SectionExperience } from "@/components/section-experience";
+import { SectionContact } from "@/components/section-contact";
+import { SectionFooter } from "@/components/section-footer";
 
 type AnimationType = "pulse" | "wave" | "random";
 
@@ -28,7 +32,7 @@ const COLORS = [
 ];
 const ANIMS: AnimationType[] = ["pulse", "wave", "random"];
 
-export function SectionHero() {
+export function SectionGridPage() {
   const { t } = useLang();
 
   const [cfg, setCfg] = useState<Cfg>({
@@ -95,21 +99,33 @@ export function SectionHero() {
       opacityMax={cfg.opacityMax}
       background="hsl(var(--background))"
     >
-      <h1>{t["hero.title"]}</h1>
-      <p>{t["hero.desc"]}</p>
-      <div className="buttons">
-        <a href="#skills" className="button">
-          {t["hero.ctaPrimary"]}
-        </a>
-        <button
-          type="button"
-          className="button-outline"
-          onClick={() => setPanelOpen(true)}
-        >
-          {t["hero.controls"]}
-        </button>
+      {/* Hero intro（h1 / p / buttons） */}
+      <div className="hero-intro">
+        <h1>{t["hero.title"]}</h1>
+        <p>{t["hero.desc"]}</p>
+        <div className="buttons">
+          <a href="#skills" className="button">
+            {t["hero.ctaPrimary"]}
+          </a>
+          <button
+            type="button"
+            className="button-outline"
+            onClick={() => setPanelOpen(true)}
+          >
+            {t["hero.controls"]}
+          </button>
+        </div>
       </div>
 
+      {/* 其它區塊 — 全部塞進同一個動態背景裡 */}
+      <SectionSkills />
+      <SectionExperience />
+      <SectionContact />
+
+      {/* Footer 一併放進來，視覺一致 */}
+      <SectionFooter />
+
+      {/* 控制面板 */}
       {panelOpen && (
         <ControlPanel
           cfg={cfg}

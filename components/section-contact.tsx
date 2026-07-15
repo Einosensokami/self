@@ -26,7 +26,7 @@ export function SectionContact() {
     <section id="contact" className="py-24">
       <div className="mx-auto max-w-[980px] px-6 text-center">
         <header className="mb-10">
-          <h2 className="text-3xl md:text-4xl font-serif font-bold tracking-tight">
+          <h2 className="text-3xl md:text-4xl font-serif font-bold tracking-tight text-foreground">
             {t["contact.title"]}
           </h2>
           <p className="mt-2 text-muted-foreground max-w-xl mx-auto">
@@ -41,12 +41,12 @@ export function SectionContact() {
                 href={c.href}
                 target={c.href.startsWith("http") ? "_blank" : undefined}
                 rel={c.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                className="flex items-center gap-3 px-5 py-4 border border-border rounded-md bg-background transition-colors hover:border-foreground"
+                className="flex items-center gap-3 px-5 py-4 border border-border rounded-md bg-card/60 backdrop-blur-sm transition-colors hover:border-foreground hover:bg-card"
               >
                 <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-foreground text-background text-[11px] font-semibold">
                   {c.icon}
                 </span>
-                <span>{c.label}</span>
+                <span className="text-foreground">{c.label}</span>
               </a>
             </li>
           ))}
