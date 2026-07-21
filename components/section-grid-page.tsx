@@ -39,9 +39,10 @@ export function SectionGridPage() {
           </div>
           <div className="relative mx-auto aspect-square w-full max-w-[25rem] lg:col-span-5">
             <div className="absolute inset-0 rotate-6 rounded-[34%] bg-[#db6049]" />
-            <div className="absolute inset-5 -rotate-6 rounded-[34%] bg-[#1e2a38]" />
-            <div className="absolute inset-12 grid place-items-center rounded-full border border-[#f7f3ec]/30 text-center text-[#f7f3ec]"><span className="text-[clamp(4rem,9vw,7.5rem)] font-semibold leading-none tracking-[-.1em]">AI</span><span className="mt-2 block text-[10px] font-bold tracking-[.25em]">HUMAN / CENTERED</span></div>
-            <span className="absolute -bottom-3 -left-2 rounded-full bg-[#f6d6b9] px-4 py-2 text-xs font-bold shadow-sm">PLANNING → BUILDING</span>
+            <div className="absolute inset-5 -rotate-6 overflow-hidden rounded-[34%] bg-[#1e2a38] p-2 shadow-xl">
+              <img src="einosensokami-avatar.png" alt="Einosensokami" className="h-full w-full rounded-[30%] object-cover" />
+            </div>
+            <span className="absolute -bottom-3 -left-2 rounded-full bg-[#f6d6b9] px-4 py-2 text-xs font-bold shadow-sm">EINOSENSOKAMI</span>
           </div>
         </div>
         <div className="mx-auto mt-20 flex max-w-6xl justify-between border-t border-[#1e2a38]/15 pt-4 text-[11px] font-bold tracking-[.15em] text-[#7a8490]"><span>PORTFOLIO / 2026</span><span>TAIWAN</span></div>
