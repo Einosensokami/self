@@ -36,14 +36,14 @@ export type Dictionary = {
 
 export const dictionaries: Record<Lang, Dictionary> = {
   zh: {
-    brand: "John Wu",
+    brand: "Einosensokami",
     "nav.about": "關於我",
     "nav.skills": "專長",
     "nav.experience": "經歷",
     "nav.contact": "聯絡",
     "hero.eyebrow": "AI APPLICATION PLANNER · TAIWAN",
     "hero.title": "把 AI 的可能，\n做成真正好用的體驗。",
-    "hero.subtitle": "我是 John Wu，專注於 AI 應用規劃、工作流程設計與實作。",
+    "hero.subtitle": "我是 Einosensokami，專注於 AI 應用規劃、工作流程設計與實作。",
     "hero.ctaPrimary": "認識我的專長",
     "hero.ctaSecondary": "聯絡我",
     "about.label": "01 / ABOUT",
@@ -66,17 +66,17 @@ export const dictionaries: Record<Lang, Dictionary> = {
     "contact.title": "一起做點有意思的事。",
     "contact.body": "無論是合作、交流，或只是想聊聊 AI 與產品，歡迎來信。",
     "contact.cta": "寄一封信給我",
-    "footer.note": "Designed and built by John Wu.",
+    "footer.note": "Designed and built by Einosensokami.",
   },
   en: {
-    brand: "John Wu",
+    brand: "Einosensokami",
     "nav.about": "About",
     "nav.skills": "Expertise",
     "nav.experience": "Experience",
     "nav.contact": "Contact",
     "hero.eyebrow": "AI APPLICATION PLANNER · TAIWAN",
     "hero.title": "Turning AI potential\ninto useful experiences.",
-    "hero.subtitle": "I’m John Wu — focused on AI application planning, workflow design, and implementation.",
+    "hero.subtitle": "I’m Einosensokami — focused on AI application planning, workflow design, and implementation.",
     "hero.ctaPrimary": "Explore expertise",
     "hero.ctaSecondary": "Get in touch",
     "about.label": "01 / ABOUT",
@@ -99,7 +99,7 @@ export const dictionaries: Record<Lang, Dictionary> = {
     "contact.title": "Let’s make something meaningful.",
     "contact.body": "For a collaboration, an exchange of ideas, or a conversation about AI and products — my inbox is open.",
     "contact.cta": "Send me an email",
-    "footer.note": "Designed and built by John Wu.",
+    "footer.note": "Designed and built by Einosensokami.",
   },
 };
 
