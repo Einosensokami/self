@@ -31,7 +31,7 @@ export function SectionGridPage() {
         <div className="mx-auto grid max-w-6xl items-end gap-12 lg:grid-cols-12">
           <div className="lg:col-span-7">
             <p className="mb-7 text-[11px] font-bold tracking-[0.18em] text-[#db6049]">{t["hero.eyebrow"]}</p>
-            <h1 className="max-w-3xl text-[clamp(2.7rem,5vw,4.8rem)] font-semibold leading-[1.03] tracking-[-0.06em]">{t["hero.title"]}</h1>
+            <h1 className="max-w-3xl whitespace-pre-line text-[clamp(2.25rem,3.8vw,3.75rem)] font-medium leading-[1.32] tracking-[-0.045em] text-pretty">{t["hero.title"]}</h1>
             <div className="mt-9 flex flex-wrap gap-3">
               <a href="#skills" className="inline-flex items-center gap-2 rounded-full bg-[#1e2a38] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#db6049]">{t["hero.ctaPrimary"]}<ArrowDownRight size={16} /></a>
               <a href="#contact" className="inline-flex items-center gap-2 rounded-full border border-[#1e2a38]/20 px-5 py-3 text-sm font-semibold transition hover:border-[#1e2a38]">{t["hero.ctaSecondary"]}<ArrowUpRight size={16} /></a>
