@@ -18,7 +18,14 @@ export function SectionGridPage() {
   ];
 
   return <div id="top" className="relative overflow-hidden bg-[#f7f3ec] text-[#1e2a38]">
-    <div className="portfolio-scene" aria-hidden="true" />
+    <div
+      className="portfolio-scene"
+      aria-hidden="true"
+      style={{
+        backgroundImage:
+          "linear-gradient(to bottom, rgb(247 243 236 / .45), rgb(247 243 236 / .68) 58%, rgb(247 243 236 / .9)), url('portfolio-landscape.png')",
+      }}
+    />
     <main className="relative z-10">
       <section className="relative px-5 pb-16 pt-28 sm:px-8 lg:px-12 lg:pt-36">
         <div className="mx-auto grid max-w-6xl items-end gap-12 lg:grid-cols-12">
