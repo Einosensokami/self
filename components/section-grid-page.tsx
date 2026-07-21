@@ -17,8 +17,9 @@ export function SectionGridPage() {
     { period: t["experience.e2.period"], role: t["experience.e2.role"], org: t["experience.e2.org"], desc: t["experience.e2.desc"] },
   ];
 
-  return <div id="top" className="overflow-hidden bg-[#f7f3ec] text-[#1e2a38]">
-    <main>
+  return <div id="top" className="relative overflow-hidden bg-[#f7f3ec] text-[#1e2a38]">
+    <div className="portfolio-scene" aria-hidden="true" />
+    <main className="relative z-10">
       <section className="relative px-5 pb-16 pt-28 sm:px-8 lg:px-12 lg:pt-36">
         <div className="mx-auto grid max-w-6xl items-end gap-12 lg:grid-cols-12">
           <div className="lg:col-span-7">
@@ -48,6 +49,6 @@ export function SectionGridPage() {
 
       <section id="contact" className="bg-[#db6049] px-5 py-24 text-[#1e2a38] sm:px-8 lg:px-12 lg:py-32"><div className="mx-auto max-w-6xl"><p className="section-label text-[#1e2a38]/60">{t["contact.label"]}</p><div className="mt-14 grid gap-10 lg:grid-cols-12"><div className="lg:col-span-8"><h2 className="max-w-3xl text-5xl font-semibold tracking-[-.065em] sm:text-7xl">{t["contact.title"]}</h2><p className="mt-7 max-w-lg text-lg leading-8 text-[#1e2a38]/75">{t["contact.body"]}</p></div><a href="mailto:buw8683@gmail.com" className="group flex h-fit items-center justify-between rounded-full bg-[#1e2a38] px-6 py-5 text-sm font-semibold text-white transition hover:bg-white hover:text-[#1e2a38] lg:col-span-4">{t["contact.cta"]}<Mail size={19} className="transition group-hover:-translate-y-1 group-hover:translate-x-1" /></a></div></div></section>
     </main>
-    <footer className="bg-[#1e2a38] px-5 py-6 text-xs text-white/55 sm:px-8 lg:px-12"><div className="mx-auto flex max-w-6xl justify-between"><span>© {new Date().getFullYear()} JOHN WU</span><span>{t["footer.note"]}</span></div></footer>
+    <footer className="relative z-10 bg-[#1e2a38] px-5 py-6 text-xs text-white/55 sm:px-8 lg:px-12"><div className="mx-auto flex max-w-6xl justify-between"><span>© {new Date().getFullYear()} JOHN WU</span><span>{t["footer.note"]}</span></div></footer>
   </div>;
 }
