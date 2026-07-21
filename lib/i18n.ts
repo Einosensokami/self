@@ -2,183 +2,104 @@ export type Lang = "zh" | "en";
 
 export type Dictionary = {
   brand: string;
+  "nav.about": string;
   "nav.skills": string;
   "nav.experience": string;
   "nav.contact": string;
-
   "hero.eyebrow": string;
-  "hero.name": string;
+  "hero.title": string;
   "hero.subtitle": string;
   "hero.ctaPrimary": string;
   "hero.ctaSecondary": string;
-  "hero.controls": string;
-  "hero.desc": string;
-  "hero.title": string;
-
-  "panel.title": string;
-  "panel.rows": string;
-  "panel.cols": string;
-  "panel.spacing": string;
-  "panel.duration": string;
-  "panel.animation": string;
-  "panel.animation.pulse": string;
-  "panel.animation.wave": string;
-  "panel.animation.random": string;
-  "panel.pulseEffect": string;
-  "panel.mouseGlow": string;
-  "panel.opacityMin": string;
-  "panel.opacityMax": string;
-  "panel.randomize": string;
-  "panel.close": string;
-
+  "about.label": string;
+  "about.title": string;
+  "about.body": string;
+  "skills.label": string;
   "skills.title": string;
   "skills.subtitle": string;
-  "skills.frontend": string;
-  "skills.backend": string;
-  "skills.tools": string;
-  "skills.soft": string;
-  "skills.soft1": string;
-  "skills.soft2": string;
-  "skills.soft3": string;
-
-  "exp.title": string;
-  "exp.subtitle": string;
-  "exp.e1.role": string;
-  "exp.e1.org": string;
-  "exp.e1.desc": string;
-  "exp.e2.role": string;
-  "exp.e2.org": string;
-  "exp.e2.desc": string;
-
+  "experience.label": string;
+  "experience.title": string;
+  "experience.e1.period": string;
+  "experience.e1.role": string;
+  "experience.e1.org": string;
+  "experience.e1.desc": string;
+  "experience.e2.period": string;
+  "experience.e2.role": string;
+  "experience.e2.org": string;
+  "experience.e2.desc": string;
+  "contact.label": string;
   "contact.title": string;
-  "contact.subtitle": string;
-
-  "footer.rights": string;
+  "contact.body": string;
+  "contact.cta": string;
   "footer.note": string;
 };
 
 export const dictionaries: Record<Lang, Dictionary> = {
   zh: {
-    brand: "永恆戰神 Einosensokami",
-
-    "nav.skills": "技能",
+    brand: "John Wu",
+    "nav.about": "關於我",
+    "nav.skills": "專長",
     "nav.experience": "經歷",
     "nav.contact": "聯絡",
-
-    "hero.eyebrow": "嗨，你好，我是",
-    "hero.name": "吳秉翔",
-    "hero.subtitle": "AI應用規劃師",
-    "hero.title": "DataGrid Hero",
-    "hero.desc":
-      "一個生成式、互動式的 hero 元件，使用 React 打造。可透過控制面板即時調整網格動畫。",
-    "hero.ctaPrimary": "看我的技能",
-    "hero.ctaSecondary": "與我聯絡",
-    "hero.controls": "控制面板 (H)",
-
-    "panel.title": "網格控制",
-    "panel.rows": "行數",
-    "panel.cols": "列數",
-    "panel.spacing": "間距",
-    "panel.duration": "週期（秒）",
-    "panel.animation": "動畫類型",
-    "panel.animation.pulse": "由中心脈動",
-    "panel.animation.wave": "波紋",
-    "panel.animation.random": "隨機",
-    "panel.pulseEffect": "脈動效果",
-    "panel.mouseGlow": "滑鼠發光",
-    "panel.opacityMin": "最小透明度",
-    "panel.opacityMax": "最大透明度",
-    "panel.randomize": "隨機組合 (R)",
-    "panel.close": "關閉 (H)",
-
-    "skills.title": "技能與專長",
-    "skills.subtitle": "我專注於以 AI 工具進行開發、規劃與日常工作流優化。",
-    "skills.frontend": "AI 應用開發",
-    "skills.backend": "AI 生產力工具",
-    "skills.tools": "提示工程與規劃",
-    "skills.soft": "協作與管理",
-    "skills.soft1": "跨領域溝通",
-    "skills.soft2": "AI 知識庫管理",
-    "skills.soft3": "需求分析與產品規劃",
-
-    "exp.title": "經歷",
-    "exp.subtitle": "走過的路。",
-    "exp.e1.role": "人工智慧應用工程學士學位學程 (就讀中)",
-    "exp.e1.org": "國立臺中科技大學",
-    "exp.e1.desc": "專注於資訊技術、人工智慧應用及相關學科學習。",
-    "exp.e2.role": "助教",
-    "exp.e2.org": "智慧物流青年AI實戰養成班",
-    "exp.e2.desc": "協助學員進行 AI 實戰專案開發與演算法應用指導。",
-
-    "contact.title": "與我聯絡",
-    "contact.subtitle": "想合作、聊聊天，或只是想打聲招呼 — 都歡迎。",
-
-    "footer.rights": "All rights reserved.",
-    "footer.note": "Built with Next.js + shadcn/ui + Tailwind CSS.",
+    "hero.eyebrow": "AI APPLICATION PLANNER · TAIWAN",
+    "hero.title": "把 AI 的可能，\n做成真正好用的體驗。",
+    "hero.subtitle": "我是 John Wu，專注於 AI 應用規劃、工作流程設計與實作。",
+    "hero.ctaPrimary": "認識我的專長",
+    "hero.ctaSecondary": "聯絡我",
+    "about.label": "01 / ABOUT",
+    "about.title": "從想法到可行方案，\n讓技術為人服務。",
+    "about.body": "我喜歡站在需求與技術之間，拆解問題、設計流程，並用 AI 工具打造更簡潔可靠的解法。",
+    "skills.label": "02 / EXPERTISE",
+    "skills.title": "專長與工具",
+    "skills.subtitle": "以產品思維串連 AI、程式與自動化工作流程。",
+    "experience.label": "03 / EXPERIENCE",
+    "experience.title": "正在累積的路徑",
+    "experience.e1.period": "2025 — 現在",
+    "experience.e1.role": "人工智慧應用工程學士班",
+    "experience.e1.org": "國立臺中科技大學",
+    "experience.e1.desc": "投入資訊技術、AI 應用與軟體工程的學習與實作。",
+    "experience.e2.period": "2026 夏季",
+    "experience.e2.role": "教學助理",
+    "experience.e2.org": "智慧物流青年 AI 實作培訓",
+    "experience.e2.desc": "協助學員完成 AI 實作專題，並提供演算法應用與開發方向的引導。",
+    "contact.label": "04 / CONTACT",
+    "contact.title": "一起做點有意思的事。",
+    "contact.body": "無論是合作、交流，或只是想聊聊 AI 與產品，歡迎來信。",
+    "contact.cta": "寄一封信給我",
+    "footer.note": "Designed and built by John Wu.",
   },
-
   en: {
-    brand: "永恆戰神 Einosensokami",
-
-    "nav.skills": "Skills",
+    brand: "John Wu",
+    "nav.about": "About",
+    "nav.skills": "Expertise",
     "nav.experience": "Experience",
     "nav.contact": "Contact",
-
-    "hero.eyebrow": "Hi, I'm",
-    "hero.name": "吳秉翔 (John Wu)",
-    "hero.subtitle": "AI Application Planner",
-    "hero.title": "DataGrid Hero",
-    "hero.desc":
-      "A generative, interactive hero component built with React. Customize the grid animation using the control panel.",
-    "hero.ctaPrimary": "See my skills",
+    "hero.eyebrow": "AI APPLICATION PLANNER · TAIWAN",
+    "hero.title": "Turning AI potential\ninto useful experiences.",
+    "hero.subtitle": "I’m John Wu — focused on AI application planning, workflow design, and implementation.",
+    "hero.ctaPrimary": "Explore expertise",
     "hero.ctaSecondary": "Get in touch",
-    "hero.controls": "Controls (H)",
-
-    "panel.title": "Grid Controls",
-    "panel.rows": "Rows",
-    "panel.cols": "Columns",
-    "panel.spacing": "Spacing",
-    "panel.duration": "Duration (s)",
-    "panel.animation": "Animation Type",
-    "panel.animation.pulse": "Pulse from Center",
-    "panel.animation.wave": "Wave",
-    "panel.animation.random": "Random",
-    "panel.pulseEffect": "Pulse Effect",
-    "panel.mouseGlow": "Mouse Glow",
-    "panel.opacityMin": "Opacity Min",
-    "panel.opacityMax": "Opacity Max",
-    "panel.randomize": "Randomize (R)",
-    "panel.close": "Close (H)",
-
-    "skills.title": "Skills",
-    "skills.subtitle":
-      "Focusing on AI-driven development, optimization, and workflow planning.",
-    "skills.frontend": "AI App Development",
-    "skills.backend": "AI Productivity Tools",
-    "skills.tools": "Prompting & Planning",
-    "skills.soft": "Collaboration & Mgmt",
-    "skills.soft1": "Cross-domain Communication",
-    "skills.soft2": "AI Knowledge Bases",
-    "skills.soft3": "Requirements & Product Planning",
-
-    "exp.title": "Experience",
-    "exp.subtitle": "The path so far.",
-    "exp.e1.role":
-      "Bachelor Degree Program of Artificial Intelligence Application Engineering (Enrolled)",
-    "exp.e1.org": "National Taichung University of Science and Technology",
-    "exp.e1.desc":
-      "Focusing on information technology, AI applications, and related software engineering studies.",
-    "exp.e2.role": "Teaching Assistant",
-    "exp.e2.org": "Smart Logistics Youth AI Practical Training Program",
-    "exp.e2.desc":
-      "Assisted students with AI practical project development and algorithm application guidance.",
-
-    "contact.title": "Get in touch",
-    "contact.subtitle":
-      "For collaborations, a chat, or just to say hi — my inbox is open.",
-
-    "footer.rights": "All rights reserved.",
-    "footer.note": "Built with Next.js + shadcn/ui + Tailwind CSS.",
+    "about.label": "01 / ABOUT",
+    "about.title": "From an idea to a practical path,\nwith technology in service of people.",
+    "about.body": "I work between human needs and technology: framing problems, designing workflows, and building simpler, more reliable solutions with AI.",
+    "skills.label": "02 / EXPERTISE",
+    "skills.title": "Tools of the trade",
+    "skills.subtitle": "Connecting AI, code, and automation with a product mindset.",
+    "experience.label": "03 / EXPERIENCE",
+    "experience.title": "A path in progress",
+    "experience.e1.period": "2025 — Present",
+    "experience.e1.role": "B.S. Program, AI Application Engineering",
+    "experience.e1.org": "National Taichung University of Science and Technology",
+    "experience.e1.desc": "Studying information technology, AI applications, and hands-on software engineering.",
+    "experience.e2.period": "Summer 2026",
+    "experience.e2.role": "Teaching Assistant",
+    "experience.e2.org": "Smart Logistics Youth AI Practical Training",
+    "experience.e2.desc": "Supported learners on AI projects with guidance on development and applied algorithms.",
+    "contact.label": "04 / CONTACT",
+    "contact.title": "Let’s make something meaningful.",
+    "contact.body": "For a collaboration, an exchange of ideas, or a conversation about AI and products — my inbox is open.",
+    "contact.cta": "Send me an email",
+    "footer.note": "Designed and built by John Wu.",
   },
 };
 
