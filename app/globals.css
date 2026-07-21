@@ -1,11 +1,8 @@
 @import "tailwindcss";
 
-:root { --background: #0b1715; --foreground: #f4f7ee; }
+:root { --background: #f7f3ec; --foreground: #1e2a38; }
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; background: var(--background); }
 body { margin: 0; background: var(--background); color: var(--foreground); font-family: Arial, "Noto Sans TC", sans-serif; }
-::selection { background: #d9ff64; color: #0b1715; }
-.section-label { font-size: .7rem; font-weight: 700; letter-spacing: .16em; color: rgb(244 247 238 / .5); }
-.hero-orbit { background: radial-gradient(circle, rgb(217 255 100 / .15) 0, rgb(20 58 47 / .16) 35%, transparent 68%); filter: blur(4px); }
-@media (prefers-reduced-motion: no-preference) { .hero-orbit { animation: breathe 8s ease-in-out infinite; } }
-@keyframes breathe { 50% { transform: translate(-50%, -50%) scale(1.12); opacity: .75; } }
+::selection { background: #db6049; color: white; }
+.section-label { font-size: .7rem; font-weight: 700; letter-spacing: .16em; color: rgb(30 42 56 / .5); }
