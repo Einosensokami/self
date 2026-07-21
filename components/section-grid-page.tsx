@@ -15,7 +15,7 @@ const favoriteGames = [
   { name: "崩壞：星穹鐵道", image: "game-icons/honkai-star-rail.jpg" },
   { name: "魔物獵人：荒野", image: "game-icons/monster-hunter-wilds.jpg" },
   { name: "暗影詩章：凌越世界", image: "game-icons/shadowverse-worlds-beyond.jpg" },
-  { name: "空洞騎士", image: "game-icons/hollow-knight.jpg" },
+  { name: "空洞騎士", image: "game-icons/hollow-knight-switch.jpg" },
   { name: "遊戲王 Master Duel", image: "game-icons/yu-gi-oh-master-duel.jpg" },
   { name: "鳴潮", image: "game-icons/wuthering-waves.jpg" },
 ];
