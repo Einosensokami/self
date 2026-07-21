@@ -10,6 +10,16 @@ const capabilities = [
   { icon: Bot, title: "Product Thinking", items: ["Requirements", "User flows", "Cross-domain communication"], shade: "bg-[#f0d5dd]" },
 ];
 
+const favoriteGames = [
+  { name: "原神", position: "0% 0%" },
+  { name: "崩壞：星穹鐵道", position: "33.333% 0%" },
+  { name: "魔物獵人：荒野", position: "66.666% 0%" },
+  { name: "暗影詩章：凌越世界", position: "100% 0%" },
+  { name: "空洞騎士", position: "0% 100%" },
+  { name: "遊戲王 Master Duel", position: "33.333% 100%" },
+  { name: "鳴潮", position: "66.666% 100%" },
+];
+
 export function SectionGridPage() {
   const { t } = useLang();
   const experiences = [
@@ -50,7 +60,7 @@ export function SectionGridPage() {
 
       <section id="skills" className="px-5 py-24 sm:px-8 lg:px-12 lg:py-32"><div className="mx-auto max-w-6xl"><div className="grid gap-5 lg:grid-cols-12"><p className="section-label lg:col-span-3">{t["skills.label"]}</p><div className="lg:col-span-9"><h2 className="text-4xl font-medium tracking-[-.05em] sm:text-6xl">{t["skills.title"]}</h2><p className="mt-4 text-[#50606f]">{t["skills.subtitle"]}</p></div></div><div className="mt-14 grid gap-4 sm:grid-cols-2">{capabilities.map(({ icon: Icon, title, items, shade }, index) => <article key={title} className={`${shade} rounded-3xl p-7 sm:p-9`}><div className="flex items-start justify-between"><span className="grid h-11 w-11 place-items-center rounded-full bg-white/70"><Icon size={20} /></span><span className="text-sm font-semibold text-[#1e2a38]/50">0{index + 1}</span></div><h3 className="mt-14 text-2xl font-semibold tracking-[-.035em]">{title}</h3><ul className="mt-5 space-y-2 text-sm text-[#1e2a38]/65">{items.map((item) => <li key={item}>{item}</li>)}</ul></article>)}</div></div></section>
 
-      <section id="about" className="px-5 py-24 sm:px-8 lg:px-12 lg:py-32"><div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-12"><p className="section-label lg:col-span-3">02 / 喜歡的遊戲</p><div className="lg:col-span-9"><h2 className="max-w-4xl whitespace-pre-line text-4xl font-medium leading-tight tracking-[-.05em] sm:text-6xl">{t["about.title"]}</h2><div className="mt-10 grid max-w-3xl gap-8 border-t border-[#1e2a38]/15 pt-6 sm:grid-cols-[1fr_2fr]"><span className="text-sm font-semibold text-[#db6049]">MY APPROACH</span><p className="text-lg leading-8 text-[#50606f]">{t["about.body"]}</p></div></div></div></section>
+      <section id="about" className="px-5 py-24 sm:px-8 lg:px-12 lg:py-32"><div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-12"><p className="section-label lg:col-span-3">02 / 喜歡的遊戲</p><div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:col-span-9 xl:grid-cols-4">{favoriteGames.map((game) => <article key={game.name} className="group rounded-3xl bg-white/45 p-3 shadow-sm backdrop-blur-sm"><div className="aspect-square rounded-2xl bg-[length:400%_200%] transition duration-300 group-hover:scale-[1.03]" style={{ backgroundImage: "url('game-icons.png')", backgroundPosition: game.position }} /><p className="px-2 pb-2 pt-4 text-sm font-semibold tracking-[-.02em]">{game.name}</p></article>)}</div></div></section>
 
       <section id="experience" className="px-5 py-24 sm:px-8 lg:px-12 lg:py-32"><div className="mx-auto max-w-6xl"><div className="grid gap-5 lg:grid-cols-12"><p className="section-label lg:col-span-3">{t["experience.label"]}</p><h2 className="text-4xl font-medium tracking-[-.05em] sm:text-6xl lg:col-span-9">{t["experience.title"]}</h2></div><ol className="mt-16 border-t border-[#1e2a38]/20">{experiences.map((item, index) => <li key={item.role} className="grid gap-4 border-b border-[#1e2a38]/20 py-8 md:grid-cols-12"><p className="text-sm font-semibold md:col-span-2">{item.period}</p><div className="md:col-span-6"><h3 className="text-xl font-semibold tracking-[-.03em]">{item.role}</h3><p className="mt-2 text-sm text-[#50606f]">{item.org}</p></div><p className="text-sm leading-6 text-[#50606f] md:col-span-4">{item.desc}</p><span className="hidden text-right text-sm text-[#7a8490] md:block">0{index + 1}</span></li>)}</ol></div></section>
 
