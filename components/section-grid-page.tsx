@@ -8,13 +8,22 @@ const openSourceProjects = [
     name: "AI-powered Stock Prediction Assistant",
     description: "以 Python 實作的 AI 股票預測助理。",
     language: "Python",
+    type: "個人開源",
     url: "https://github.com/Einosensokami/AI-powered_stock_prediction_assistant",
   },
   {
     name: "Web-Ferret-Pet",
     description: "使用 HTML、CSS、JavaScript 製作的去背白雪貂網頁桌寵。",
     language: "JavaScript",
+    type: "個人開源",
     url: "https://github.com/Einosensokami/Web-Ferret-Pet",
+  },
+  {
+    name: "Vision-Aided AR Navigation Agent",
+    description: "結合 OpenCV 與 AI Agent，協助視障者及銀髮族進行環境感知與安全導航。",
+    language: "Python",
+    type: "參與開源",
+    url: "https://github.com/Einosensokami/vision_nav_agent",
   },
 ];
 
@@ -66,7 +75,7 @@ export function SectionGridPage() {
         <div className="mx-auto mt-20 flex max-w-6xl justify-between border-t border-[#1e2a38]/15 pt-4 text-[11px] font-bold tracking-[.15em] text-[#7a8490]"><span>PORTFOLIO / 2026</span><span>TAIWAN</span></div>
       </section>
 
-      <section id="skills" className="px-5 py-24 sm:px-8 lg:px-12 lg:py-32"><div className="mx-auto max-w-6xl"><div className="grid gap-5 lg:grid-cols-12"><p className="section-label lg:col-span-3">01 / OPEN SOURCE</p><div className="lg:col-span-9"><h2 className="text-4xl font-medium tracking-[-.05em] sm:text-6xl">開源專案</h2><p className="mt-4 text-[#50606f]">我在 GitHub 上持續實作與分享的作品。</p></div></div><div className="mt-14 grid gap-4 sm:grid-cols-2">{openSourceProjects.map((project, index) => <a key={project.name} href={project.url} target="_blank" rel="noreferrer" className="group rounded-3xl bg-white/45 p-7 shadow-sm backdrop-blur-sm transition hover:-translate-y-1 hover:bg-white/70 sm:p-9"><div className="flex items-start justify-between"><span className="text-sm font-semibold text-[#1e2a38]/50">0{index + 1}</span><ExternalLink size={20} className="transition group-hover:-translate-y-1 group-hover:translate-x-1" /></div><h3 className="mt-14 text-2xl font-semibold tracking-[-.035em]">{project.name}</h3><p className="mt-4 text-sm leading-6 text-[#50606f]">{project.description}</p><p className="mt-8 text-xs font-bold tracking-[.14em] text-[#db6049]">{project.language}</p></a>)}</div></div></section>
+      <section id="skills" className="px-5 py-24 sm:px-8 lg:px-12 lg:py-32"><div className="mx-auto max-w-6xl"><div className="grid gap-5 lg:grid-cols-12"><p className="section-label lg:col-span-3">01 / OPEN SOURCE</p><div className="lg:col-span-9"><h2 className="text-4xl font-medium tracking-[-.05em] sm:text-6xl">開源專案</h2><p className="mt-4 text-[#50606f]">我在 GitHub 上實作、分享與參與的開源作品。</p></div></div><div className="mt-14 grid gap-4 sm:grid-cols-2">{openSourceProjects.map((project, index) => <a key={project.name} href={project.url} target="_blank" rel="noreferrer" className="group rounded-3xl bg-white/45 p-7 shadow-sm backdrop-blur-sm transition hover:-translate-y-1 hover:bg-white/70 sm:p-9"><div className="flex items-start justify-between"><span className="text-sm font-semibold text-[#1e2a38]/50">0{index + 1}</span><ExternalLink size={20} className="transition group-hover:-translate-y-1 group-hover:translate-x-1" /></div><p className="mt-10 text-xs font-bold tracking-[.14em] text-[#db6049]">{project.type}</p><h3 className="mt-3 text-2xl font-semibold tracking-[-.035em]">{project.name}</h3><p className="mt-4 text-sm leading-6 text-[#50606f]">{project.description}</p><p className="mt-8 text-xs font-bold tracking-[.14em] text-[#db6049]">{project.language}</p></a>)}</div></div></section>
 
       <section id="about" className="px-5 py-24 sm:px-8 lg:px-12 lg:py-32"><div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-12"><p className="section-label lg:col-span-3">02 / 喜歡的遊戲</p><div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:col-span-9 xl:grid-cols-4">{favoriteGames.map((game) => <article key={game.name} className="group overflow-hidden rounded-3xl bg-white/45 p-3 shadow-sm backdrop-blur-sm"><img src={game.image} alt={`${game.name} 應用程式圖示`} className="aspect-square w-full rounded-2xl object-cover transition duration-300 group-hover:scale-[1.03]" /><p className="px-2 pb-2 pt-4 text-sm font-semibold tracking-[-.02em]">{game.name}</p></article>)}</div></div></section>
 
