@@ -25,6 +25,13 @@ const openSourceProjects = [
     type: "參與開源",
     url: "https://github.com/Einosensokami/vision_nav_agent",
   },
+  {
+    name: "AgentAQI",
+    description: "以台灣空氣品質為核心，提供個人化健康資訊與 AI Agent 輔助服務。",
+    language: "Python",
+    type: "參與開源",
+    url: "https://github.com/Tunai-0511/aqi-tw-personal",
+  },
 ];
 
 const favoriteGames = [
