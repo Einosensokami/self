@@ -1,9 +1,16 @@
 @import "tailwindcss";
 
 :root { --background: #f7f3ec; --foreground: #1e2a38; }
+.dark { --background: #0f1724; --foreground: #e8e4de; }
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; background: var(--background); }
 body { margin: 0; background: var(--background); color: var(--foreground); font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", Arial, sans-serif; }
 ::selection { background: #db6049; color: white; }
 .section-label { font-size: .7rem; font-weight: 700; letter-spacing: .16em; color: rgb(30 42 56 / .5); }
+.dark .section-label { color: rgb(232 228 222 / .5); }
 .portfolio-scene { position: fixed; inset: 0; z-index: 0; pointer-events: none; background-position: center top; background-repeat: no-repeat; background-size: cover; }
+.dark .portfolio-scene { opacity: 0.15; }
+@keyframes fade-up { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
+.animate-fade-up { animation: fade-up 0.7s ease-out both; }
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease-out, transform 0.7s ease-out; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
