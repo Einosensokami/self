@@ -9,7 +9,8 @@ body { margin: 0; background: var(--background); color: var(--foreground); font-
 .section-label { font-size: .7rem; font-weight: 700; letter-spacing: .16em; color: rgb(30 42 56 / .5); }
 .dark .section-label { color: rgb(232 228 222 / .5); }
 .portfolio-scene { position: fixed; inset: 0; z-index: 0; pointer-events: none; background-position: center top; background-repeat: no-repeat; background-size: cover; }
-.dark .portfolio-scene { opacity: 0.15; }
+.dark .portfolio-scene { opacity: 0.28; }
+html.dark #top { background-color: #172638; }
 html:not(.dark) .portfolio-scene { opacity: 0.72; }
 html:not(.dark) .text-\[\#50606f\] { color: #334657; }
 html:not(.dark) .text-\[\#7a8490\] { color: #4c5d6c; }
