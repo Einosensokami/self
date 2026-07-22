@@ -4,7 +4,7 @@ import { ArrowDownRight, ArrowUpRight, ExternalLink, Mail } from "lucide-react";
 import { useLang } from "@/components/lang-provider";
 import { useReveal } from "@/hooks/use-reveal";
 
-const openSourceProjects = [
+const legacyOpenSourceProjects = [
   {
     name: "AI-powered Stock Prediction Assistant",
     description: "以 Python 實作的 AI 股票預測助理。",
@@ -32,6 +32,48 @@ const openSourceProjects = [
     language: "Python",
     type: "參與開源",
     url: "https://github.com/Tunai-0511/aqi-tw-personal",
+  },
+];
+
+const portfolioProjects = [
+  {
+    name: "AI-powered Stock Prediction Assistant",
+    description: "結合資料分析與機器學習的股票趨勢預測助理，將模型結果整理成易於理解的決策資訊。",
+    language: "Python · Machine Learning",
+    type: "AI APPLICATION",
+    url: "https://github.com/Einosensokami/AI-powered_stock_prediction_assistant",
+  },
+  {
+    name: "Web-Ferret-Pet",
+    description: "以互動為核心的網頁電子寵物，透過動畫與前端狀態管理打造輕鬆、有生命感的瀏覽體驗。",
+    language: "HTML · CSS · JavaScript",
+    type: "FRONTEND EXPERIENCE",
+    url: "https://github.com/Einosensokami/Web-Ferret-Pet",
+  },
+  {
+    name: "Vision-Aided AR Navigation Agent",
+    description: "整合電腦視覺與 AI Agent 的擴增實境導航概念，探索即時環境辨識與行動指引。",
+    language: "Python · OpenCV · AI Agent",
+    type: "COMPUTER VISION",
+    url: "https://github.com/Einosensokami/vision_nav_agent",
+  },
+  {
+    name: "AgentAQI",
+    description: "以 AI Agent 協助查詢與解讀空氣品質資訊，讓環境數據更容易轉化為日常行動。",
+    language: "Python · AI Agent",
+    type: "DATA FOR PEOPLE",
+    url: "https://github.com/Tunai-0511/aqi-tw-personal",
+  },
+];
+
+const openSourceProjects = [
+  ...portfolioProjects,
+  {
+    name: "Computer Use MCP Integration",
+    description: "整合 Computer Use MCP，讓 AI 能安全地操作桌面環境，完成應用程式啟動、畫面確認與工作流程自動化。",
+    language: "MCP · Computer Use · Automation",
+    type: "AI AUTOMATION",
+    url: "https://github.com/Einosensokami/windows-computer-use-mcp",
   },
 ];
 
