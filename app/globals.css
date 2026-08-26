@@ -29,3 +29,4 @@ html:not(.dark) .section-label { color: #405363; }
 .animate-fade-up { animation: fade-up 0.7s ease-out both; }
 .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease-out, transform 0.7s ease-out; }
 .reveal.visible { opacity: 1; transform: translateY(0); }
+/* update qr code target to card */
