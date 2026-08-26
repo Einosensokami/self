@@ -25,3 +25,4 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return <html lang="zh-Hant" className="h-full antialiased" suppressHydrationWarning><body className="min-h-full"><LangProvider><ThemeProvider>{children}</ThemeProvider></LangProvider></body></html>;
 }
+/* deploy trigger */
