@@ -58,10 +58,10 @@
               <p class="bio">我把 AI Agents、資安思維與全端開發，組合成能真正落地的產品。歡迎聊專案、黑客松組隊、研究或任何瘋狂點子。</p>
               <div class="quickbar">
                 <button class="quick" id="copyEmail" type="button"><i class="fa-solid fa-envelope"></i>Copy Email</button>
-                <a class="quick" href="https://github.com/Einosensokami" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i>GitHub</a>
-                <a class="quick" href="https://einosensokami.github.io/self/" target="_blank" rel="noopener"><i class="fa-solid fa-globe"></i>Portfolio</a>
-                <a class="quick" href="https://www.instagram.com/einosensokami/" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i>Instagram</a>
-                <a class="quick" href="https://www.facebook.com/einosensokami" target="_blank" rel="noopener"><i class="fa-brands fa-facebook"></i>Facebook</a>
+                <a class="quick" id="githubBtn" href="https://github.com/Einosensokami" target="_blank" rel="noopener" onclick="event.stopPropagation(); window.open('https://github.com/Einosensokami','_blank'); return false;"><i class="fa-brands fa-github"></i>GitHub</a>
+                <a class="quick" href="https://einosensokami.github.io/self/" target="_blank" rel="noopener" onclick="event.stopPropagation(); window.open(this.href,'_blank'); return false;"><i class="fa-solid fa-globe"></i>Portfolio</a>
+                <a class="quick" href="https://www.instagram.com/einosensokami/" target="_blank" rel="noopener" onclick="event.stopPropagation(); window.open(this.href,'_blank'); return false;"><i class="fa-brands fa-instagram"></i>Instagram</a>
+                <a class="quick" href="https://www.facebook.com/einosensokami" target="_blank" rel="noopener" onclick="event.stopPropagation(); window.open(this.href,'_blank'); return false;"><i class="fa-brands fa-facebook"></i>Facebook</a>
               </div>
               <button class="save-btn" id="saveVcard" type="button"><i class="fa-solid fa-address-card mr-2"></i>儲存至手機聯絡人 · Save Contact (.vcf)</button>
               <p class="section-label">Selected builds · 專案亮點</p>
