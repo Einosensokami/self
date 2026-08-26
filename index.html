@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#07111f">
-  <meta name="description" content="Einosensokami (John Wu) — Real-Life Event Networking Digital Postcard">
+  <meta name="description" content="永恆戰神 (Einosensokami) — Real-Life Event Networking Digital Postcard">
   <title>Einosensokami · Event Networking Card</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -40,8 +40,8 @@
             <div class="event-badge"><i class="fa-solid fa-bolt"></i>AI Application Planner · AI Agents &amp; Automation</div>
             <img class="avatar" src="https://github.com/Einosensokami.png" alt="Einosensokami Avatar" />
             <p class="kicker">Hello, fellow builder —</p>
-            <h1 class="name">Einosensokami<span class="real-name">John Wu · 吳同學</span></h1>
-            <p class="title">AI Application Planner <span>/ NUTC AI Department<br>國立臺中科技大學 · 人工智慧應用工程學系</span></p>
+            <h1 class="name">永恆戰神<span class="real-name">Einosensokami</span></h1>
+            <p class="title">AI Application Planner <span>/ NUTC AI Department<br>國立臺中科技大學 · 人工智慧應用工程學士學位學程</span></p>
             <div class="tags"><span class="tag">#AIAgents</span><span class="tag">#BugBounty</span><span class="tag">#FullStack</span><span class="tag">#MachineLearning</span></div>
           </section>
           <aside class="scan-panel">
@@ -76,12 +76,12 @@
             <section class="back-right">
               <p class="section-label">Mutual exchange · 互相交換</p>
               <h2 class="form-title">留下你的聯絡方式</h2>
-              <p class="form-sub">填好後可儲存在此裝置，或直接開啟 Email 寄給 John。</p>
-              <form id="exchangeForm">
-                <div class="field"><label for="guestName">姓名 / Name *</label><input id="guestName" name="name" autocomplete="name" required placeholder="How should I call you?"></div>
-                <div class="field"><label for="guestContact">Email 或 LINE ID / Contact *</label><input id="guestContact" name="contact" autocomplete="email" required placeholder="you@email.com / LINE ID"></div>
-                <div class="field"><label for="guestNote">備註 / Note</label><textarea id="guestNote" name="note" placeholder="Nice meeting you!"></textarea></div>
-                <div class="form-actions"><button class="submit" type="submit"><i class="fa-solid fa-bookmark mr-1"></i> 儲存於此裝置</button><button class="mailto" id="mailExchange" type="button"><i class="fa-solid fa-paper-plane mr-1"></i> Email 給 John</button></div>
+              <p class="form-sub">填好後可儲存在此裝置，或直接開啟 Email 寄給 Einosensokami。</p>
+              <form id="exchangeForm" onsubmit="return false">
+                <div class="field"><label for="fName">姓名 / Name *</label><input id="fName" type="text" required placeholder="例如：Alex / 艾力克斯"></div>
+                <div class="field"><label for="fContact">Email 或 LINE ID / Contact *</label><input id="fContact" type="text" required placeholder="alex@example.com / line_id"></div>
+                <div class="field"><label for="fNote">備註 / Note</label><textarea id="fNote" placeholder="很高興認識你！聊聊專案合作..."></textarea></div>
+                <div class="form-actions"><button class="submit" type="submit"><i class="fa-solid fa-bookmark mr-1"></i> 儲存於此裝置</button><button class="mailto" id="mailExchange" type="button"><i class="fa-solid fa-paper-plane mr-1"></i> Email 聯絡</button></div>
               </form>
               <p class="privacy"><i class="fa-solid fa-shield-halved mr-1"></i>資料只儲存在這台裝置的瀏覽器中，不會自動上傳。</p>
               <div class="saved" id="savedState">尚未儲存交換資料 · No contact saved yet.</div>
@@ -104,8 +104,8 @@
       else document.getElementById('qrcode').innerHTML='<a href="'+PORTFOLIO+'" style="color:#07111f">Open portfolio</a>';
       document.getElementById('copyEmail').addEventListener('click',async()=>{try{await navigator.clipboard.writeText(EMAIL);toast('Email 已複製 · Copied!')}catch{location.href='mailto:'+EMAIL}});
       document.getElementById('saveVcard').addEventListener('click',()=>{
-        const vcard=['BEGIN:VCARD','VERSION:3.0','N:Wu;John;;;','FN:Einosensokami (John Wu)','ORG:NUTC AI Department','TITLE:AI Application Planner','EMAIL;TYPE=INTERNET:'+EMAIL,'URL;TYPE=Portfolio:'+PORTFOLIO,'URL;TYPE=GitHub:https://github.com/Einosensokami','NOTE:AI Agents / Bug Bounty / Full Stack / Machine Learning','END:VCARD'].join('\r\n');
-        const url=URL.createObjectURL(new Blob([vcard],{type:'text/vcard;charset=utf-8'}));const a=document.createElement('a');a.href=url;a.download='Einosensokami-John-Wu.vcf';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);toast('聯絡人檔案已下載 · Contact saved');
+        const vcard=['BEGIN:VCARD','VERSION:3.0','N:Einosensokami;;;;','FN:永恆戰神 (Einosensokami)','ORG:NUTC AI Department','TITLE:AI Application Planner','EMAIL;TYPE=INTERNET:'+EMAIL,'URL;TYPE=Portfolio:'+PORTFOLIO,'URL;TYPE=GitHub:https://github.com/Einosensokami','NOTE:AI Agents / Bug Bounty / Full Stack / Machine Learning','END:VCARD'].join('\r\n');
+        const url=URL.createObjectURL(new Blob([vcard],{type:'text/vcard;charset=utf-8'}));const a=document.createElement('a');a.href=url;a.download='Einosensokami.vcf';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);toast('聯絡人檔案已下載 · Contact saved');
       });
       const form=document.getElementById('exchangeForm'),saved=document.getElementById('savedState');
       const readForm=()=>({name:form.name.value.trim(),contact:form.contact.value.trim(),note:form.note.value.trim()||'Nice meeting you!'});
@@ -113,7 +113,7 @@
       const escapeHtml=s=>String(s).replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));
       try{const prior=JSON.parse(localStorage.getItem('cyreneExchange'));if(prior){form.name.value=prior.name||'';form.contact.value=prior.contact||'';form.note.value=prior.note||'';showSaved(prior)}}catch{}
       form.addEventListener('submit',e=>{e.preventDefault();const data=readForm();try{localStorage.setItem('cyreneExchange',JSON.stringify(data));showSaved(data);toast('已安全儲存在此裝置 · Saved locally')}catch{toast('瀏覽器阻擋本機儲存')}});
-      document.getElementById('mailExchange').addEventListener('click',()=>{if(!form.reportValidity())return;const d=readForm();location.href='mailto:'+EMAIL+'?subject='+encodeURIComponent('Nice meeting you — '+d.name)+'&body='+encodeURIComponent('Hi John!\n\n我是 '+d.name+'。\n聯絡方式：'+d.contact+'\n\n'+d.note+'\n\nNice meeting you!')});
+      document.getElementById('mailExchange').addEventListener('click',()=>{if(!form.reportValidity())return;const d=readForm();location.href='mailto:'+EMAIL+'?subject='+encodeURIComponent('Nice meeting you — '+d.name)+'&body='+encodeURIComponent('Hi Einosensokami!\n\n我是 '+d.name+'。\n聯絡方式：'+d.contact+'\n\n'+d.note+'\n\nNice meeting you!')});
       document.getElementById('exportBtn').addEventListener('click',async()=>{try{if(!window.html2canvas)throw Error();const shot=await html2canvas(document.getElementById('back'),{backgroundColor:'#07111f',scale:Math.min(devicePixelRatio||1,2),useCORS:true,logging:false});const a=document.createElement('a');a.download='Einosensokami-networking-card.png';a.href=shot.toDataURL('image/png');a.click();toast('Networking card PNG 已匯出')}catch{toast('PNG 匯出失敗，請確認網路連線')}});
       const canvas=document.getElementById('cyrene'),ctx=canvas.getContext('2d'),reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;let dpr=1,dots=[],ripples=[];
       function resize(){dpr=Math.min(devicePixelRatio||1,2);canvas.width=innerWidth*dpr;canvas.height=innerHeight*dpr;canvas.style.width=innerWidth+'px';canvas.style.height=innerHeight+'px';ctx.setTransform(dpr,0,0,dpr,0,0);dots=Array.from({length:reduced?20:Math.min(75,innerWidth/16)},()=>({x:Math.random()*innerWidth,y:Math.random()*innerHeight,r:Math.random()*1.4+.3,v:Math.random()*.18+.03,a:Math.random()*.5+.15}))}resize();addEventListener('resize',resize);addEventListener('pointerdown',e=>ripples.push({x:e.clientX,y:e.clientY,r:2,a:.65}));
