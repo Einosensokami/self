@@ -18,13 +18,20 @@ html:not(.dark) .section-label { color: #405363; }
 #top > main > section:first-child > div:first-child > div:last-child > span {
   z-index: 10;
   background: #1e2a38;
-  color: #fff;
+  color: #f7f3ec;
   box-shadow: 0 10px 24px rgb(30 42 56 / .28);
 }
 .dark #top > main > section:first-child > div:first-child > div:last-child > span {
   background: #f6d6b9;
   color: #1e2a38;
 }
+
+/* Light mode text contrast & legibility enhancements */
+html:not(.dark) ::selection { background: #db6049; color: #f7f3ec; }
+html:not(.dark) .text-white { color: #f7f3ec !important; }
+html:not(.dark) .text-white\/55 { color: #e2e8f0 !important; }
+html:not(.dark) .text-white\/60 { color: #cbd5e1 !important; }
+html:not(.dark) .hover\:text-white:hover { color: #f7f3ec !important; }
 @keyframes fade-up { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
 .animate-fade-up { animation: fade-up 0.7s ease-out both; }
 .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease-out, transform 0.7s ease-out; }
