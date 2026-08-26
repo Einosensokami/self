@@ -2,202 +2,122 @@
 <html lang="zh-Hant">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#090d1d">
-  <meta name="description" content="Einosensokami — AI Application Planner 個人電子明信片">
-  <title>Einosensokami · Personal Digital Postcard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#07111f">
+  <meta name="description" content="Einosensokami (John Wu) — Real-Life Event Networking Digital Postcard">
+  <title>Einosensokami · Event Networking Card</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Noto+Sans+TC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
   <style>
-    :root{--ink:#edf5ff;--muted:#aab8d4;--cyan:#7de8ff;--violet:#ad8cff;--pink:#ff8dcc;--glass:rgba(14,22,49,.64)}
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{margin:0;min-height:100vh;overflow-x:hidden;color:var(--ink);font-family:'Noto Sans TC',sans-serif;background:#070a16}
-    button,a{-webkit-tap-highlight-color:transparent}
-    #sea{position:fixed;inset:0;width:100%;height:100%;z-index:-3;background:radial-gradient(circle at 50% 40%,#151a48 0,#080c1d 45%,#04060e 100%)}
-    .aurora{position:fixed;inset:-25%;z-index:-2;pointer-events:none;background:conic-gradient(from 210deg at 52% 48%,transparent 0 20%,rgba(55,204,255,.11) 28%,transparent 39% 54%,rgba(153,93,255,.13) 67%,transparent 78%);filter:blur(55px);animation:drift 18s ease-in-out infinite alternate}
-    .noise{position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.05;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.75'/%3E%3C/svg%3E")}
-    @keyframes drift{to{transform:translate3d(4%,3%,0) rotate(18deg) scale(1.08)}}
-    .shell{width:min(1160px,94vw);margin:auto;padding:5vh 0 4vh}
-    .eyebrow{letter-spacing:.34em;text-transform:uppercase;font-size:.66rem;color:#b8c8e8;text-align:center;margin-bottom:1.1rem}
-    .scene{width:100%;aspect-ratio:1.72/1;max-height:720px;min-height:560px;perspective:2000px;filter:drop-shadow(0 28px 55px rgba(0,0,0,.48))}
-    .postcard{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform 1.05s cubic-bezier(.2,.75,.2,1);cursor:pointer}
-    .postcard.is-flipped{transform:rotateY(180deg)}
-    .face{position:absolute;inset:0;overflow:hidden;backface-visibility:hidden;-webkit-backface-visibility:hidden;border:1px solid rgba(193,224,255,.22);border-radius:28px;background:linear-gradient(135deg,rgba(19,30,65,.77),rgba(9,14,34,.9));box-shadow:inset 0 1px 0 rgba(255,255,255,.2),inset 0 0 70px rgba(99,114,255,.07)}
-    .face:before{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(115deg,transparent 5%,rgba(255,255,255,.06) 26%,transparent 46%),radial-gradient(circle at 8% 4%,rgba(110,224,255,.17),transparent 34%)}
-    .front{padding:clamp(28px,5vw,68px);display:flex;flex-direction:column;justify-content:space-between}
-    .back{transform:rotateY(180deg);padding:clamp(26px,3.8vw,52px);cursor:default}
-    .ornament{position:absolute;inset:20px;border:1px solid rgba(158,210,255,.16);border-radius:20px;pointer-events:none}
-    .corner{position:absolute;width:90px;height:90px;border-color:rgba(129,227,255,.42);border-style:solid;opacity:.65}
-    .c1{top:31px;left:31px;border-width:1px 0 0 1px;border-radius:18px 0 0}.c2{right:31px;bottom:31px;border-width:0 1px 1px 0;border-radius:0 0 18px}
-    .postal-row{display:flex;justify-content:space-between;align-items:flex-start;gap:22px;position:relative;z-index:1}
-    .mini-mark{font-size:.68rem;letter-spacing:.18em;line-height:1.9;color:#a8bad8;text-transform:uppercase}
-    .stamp{position:relative;width:114px;height:132px;padding:10px;background:#d4eaff;color:#16223e;clip-path:polygon(0 4%,4% 4%,4% 0,10% 0,10% 4%,16% 4%,16% 0,22% 0,22% 4%,28% 4%,28% 0,34% 0,34% 4%,40% 4%,40% 0,46% 0,46% 4%,52% 4%,52% 0,58% 0,58% 4%,64% 4%,64% 0,70% 0,70% 4%,76% 4%,76% 0,82% 0,82% 4%,88% 4%,88% 0,94% 0,94% 4%,100% 4%,100% 96%,94% 96%,94% 100%,88% 100%,88% 96%,82% 96%,82% 100%,76% 100%,76% 96%,70% 96%,70% 100%,64% 100%,64% 96%,58% 96%,58% 100%,52% 100%,52% 96%,46% 96%,46% 100%,40% 100%,40% 96%,34% 96%,34% 100%,28% 100%,28% 96%,22% 96%,22% 100%,16% 100%,16% 96%,10% 96%,10% 100%,4% 100%,4% 96%,0 96%);transform:rotate(3deg);filter:drop-shadow(0 0 18px rgba(99,220,255,.28))}
-    .stamp-inner{height:100%;border:1px solid #5d7194;display:grid;place-items:center;text-align:center;background:radial-gradient(circle,#fff 0,#cce9f6 48%,#a0bde3 100%)}
-    .stamp-icon{font-size:2rem;color:#6755bd;text-shadow:0 0 12px #5cf}
-    .stamp small{font-size:.52rem;letter-spacing:.12em;font-weight:700}
-    .postmark{position:absolute;right:88px;top:76px;width:150px;height:58px;border:2px solid rgba(165,194,230,.43);border-radius:50%;display:grid;place-items:center;text-align:center;font:600 .58rem/1.5 'Noto Sans TC';letter-spacing:.15em;color:#b8c7e2;transform:rotate(-8deg)}
-    .postmark:after{content:"";position:absolute;left:92%;width:85px;height:28px;background:repeating-linear-gradient(0deg,transparent 0 5px,rgba(165,194,230,.35) 5px 7px)}
-    .hero{position:relative;z-index:2;max-width:850px;margin:auto;text-align:center;padding:2.5vh 0}
-    .sigil{width:55px;height:55px;margin:0 auto 16px;border:1px solid rgba(136,232,255,.65);border-radius:50%;display:grid;place-items:center;color:var(--cyan);box-shadow:0 0 25px rgba(95,221,255,.18),inset 0 0 18px rgba(127,101,255,.16);animation:pulse 3s ease-in-out infinite}
-    @keyframes pulse{50%{box-shadow:0 0 45px rgba(95,221,255,.35),inset 0 0 22px rgba(127,101,255,.25);transform:translateY(-3px)}}
-    h1{font:600 clamp(3rem,7vw,6.2rem)/.9 'Cormorant Garamond',serif;letter-spacing:.02em;margin:0;background:linear-gradient(115deg,#fff 15%,#9ceaff 49%,#cbb9ff 75%,#fff);-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:0 8px 30px rgba(71,170,255,.15)}
-    .role{margin-top:19px;font-size:clamp(.72rem,1.5vw,1rem);letter-spacing:.2em;color:#bcd0eb;text-transform:uppercase}
-    .quote{margin:clamp(25px,4vh,42px) auto 0;font:500 clamp(1rem,2.2vw,1.45rem)/1.8 'Noto Sans TC';letter-spacing:.09em;color:#f4f7ff}
-    .front-foot{position:relative;z-index:3;display:flex;align-items:flex-end;justify-content:space-between;gap:25px}
-    .seal{width:74px;height:74px;flex:none;border-radius:50%;display:grid;place-items:center;font:700 1.7rem 'Cormorant Garamond';color:#ffd3e7;background:radial-gradient(circle at 34% 29%,#b55586,#6c2556 60%,#3d1638);border:3px double rgba(255,196,222,.36);box-shadow:0 7px 18px #02040b,0 0 0 6px rgba(92,31,71,.45);transform:rotate(-9deg)}
-    .flip-btn,.action-btn{border:1px solid rgba(167,224,255,.27);border-radius:999px;color:#e8f8ff;background:rgba(20,34,68,.58);backdrop-filter:blur(12px);transition:.25s ease;letter-spacing:.08em}
-    .flip-btn{padding:13px 21px;font-size:.72rem}
-    .flip-btn:hover,.action-btn:hover{transform:translateY(-2px);border-color:rgba(117,225,255,.67);box-shadow:0 8px 28px rgba(77,189,255,.16);background:rgba(39,55,96,.75)}
-    .back-grid{position:relative;z-index:1;display:grid;grid-template-columns:1.08fr .92fr;height:100%}
-    .message{padding-right:clamp(24px,4vw,55px);border-right:1px solid rgba(177,203,236,.27);overflow:auto;scrollbar-width:thin;scrollbar-color:#53698c transparent}
-    .address{padding-left:clamp(24px,4vw,55px);display:flex;flex-direction:column;min-width:0}
-    .side-label{font-size:.61rem;letter-spacing:.28em;color:#81daf2;text-transform:uppercase;margin-bottom:1rem}
-    .greeting{font:600 clamp(1.55rem,3vw,2.55rem)/1.05 'Cormorant Garamond',serif;color:#fff;margin:0 0 14px}
-    .intro{font-size:.82rem;line-height:1.85;color:#bcc8dc;margin:0 0 18px;max-width:58ch}
-    .section-title{font-size:.66rem;letter-spacing:.15em;color:#a3b8d8;text-transform:uppercase;margin:15px 0 9px}
-    .tags{display:flex;flex-wrap:wrap;gap:7px}
-    .tag{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border:1px solid rgba(150,197,233,.18);border-radius:999px;font-size:.65rem;color:#dce9fb;background:rgba(111,144,198,.08);white-space:nowrap}
-    .tag.open{color:#d9fbff;border-color:rgba(95,224,255,.23);background:rgba(65,188,231,.08)}
-    .tag i{font-size:.56rem;color:#6ee5f6}
-    .back-top{display:flex;justify-content:space-between;align-items:flex-start;gap:15px;margin-bottom:10px}
-    .back .stamp{width:88px;height:105px;transform:rotate(2deg)}
-    .back .stamp-icon{font-size:1.55rem}
-    .date-mark{width:115px;height:50px;border:1px solid rgba(159,192,228,.4);border-radius:50%;display:grid;place-items:center;font-size:.55rem;line-height:1.5;letter-spacing:.1em;color:#aabbd5;transform:rotate(-5deg);text-align:center;margin-top:8px}
-    .contact-list{margin:auto 0;display:grid;gap:9px}
-    .contact{display:flex;align-items:center;gap:12px;min-width:0;padding:9px 0;border-bottom:1px solid rgba(183,203,230,.1);color:#d8e3f5;text-decoration:none;font-size:.72rem;transition:.2s}
-    .contact:hover{color:#7de8ff;padding-left:4px}.contact i{width:20px;text-align:center;color:#95dff5}.contact span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-    .actions{display:grid;gap:9px;margin-top:15px}.action-btn{width:100%;padding:11px 13px;font-size:.66rem;cursor:pointer}.action-btn.primary{background:linear-gradient(110deg,rgba(74,194,231,.19),rgba(145,94,234,.22));border-color:rgba(137,224,255,.4)}
-    .bottom-nav{display:flex;justify-content:center;align-items:center;gap:12px;margin-top:18px;color:#8596b2;font-size:.65rem;letter-spacing:.08em}.bottom-nav button{background:none;border:0;color:#c8d9ed;cursor:pointer;padding:7px}.dot{width:4px;height:4px;background:#79dff6;border-radius:50%;box-shadow:0 0 10px #79dff6}
-    .heart{position:fixed;z-index:20;pointer-events:none;color:#ff9ccc;text-shadow:0 0 15px #ff78bb;animation:heartFly 1.8s ease-out forwards}
-    @keyframes heartFly{0%{opacity:0;transform:translate(-50%,-50%) scale(.2) rotate(0)}15%{opacity:1}100%{opacity:0;transform:translate(calc(-50% + var(--x)),calc(-50% + var(--y))) scale(1.25) rotate(var(--r))}}
-    .toast{position:fixed;z-index:30;left:50%;bottom:28px;transform:translate(-50%,20px);padding:11px 18px;border:1px solid rgba(143,224,255,.35);border-radius:99px;background:rgba(8,15,35,.85);backdrop-filter:blur(16px);color:#dcf8ff;font-size:.74rem;opacity:0;pointer-events:none;transition:.3s}.toast.show{opacity:1;transform:translate(-50%,0)}
-    .exporting{transform:none!important;transition:none!important}.exporting .face{box-shadow:none}.exporting~*{display:none}
-    @media(max-width:700px){
-      .shell{width:94vw;padding:3vh 0}.eyebrow{margin-bottom:.65rem}.scene{aspect-ratio:auto;height:min(760px,84vh);min-height:640px}.face{border-radius:22px}.front{padding:29px 24px}.ornament{inset:12px}.corner{display:none}.stamp{width:82px;height:98px}.stamp-icon{font-size:1.45rem}.postmark{right:63px;top:68px;width:105px;height:46px;font-size:.45rem}.postmark:after{width:45px}.mini-mark{font-size:.52rem}.hero{padding-top:3vh}h1{font-size:clamp(2.7rem,14vw,4.3rem)}.role{font-size:.61rem;line-height:1.8}.quote{font-size:.98rem}.seal{width:55px;height:55px}.flip-btn{font-size:.6rem;padding:11px 14px}.back{padding:23px 20px}.back-grid{grid-template-columns:1fr;grid-template-rows:1.22fr .78fr}.message{padding:0 0 18px;border-right:0;border-bottom:1px solid rgba(177,203,236,.27)}.address{padding:18px 0 0;display:grid;grid-template-columns:1fr 1fr;column-gap:14px;align-content:start}.back-top{margin:0;grid-row:1/3}.contact-list{margin:0;gap:2px}.contact{padding:5px 0;font-size:.6rem}.actions{grid-column:1/-1;grid-template-columns:1fr 1fr;margin-top:10px}.action-btn{padding:9px 7px;font-size:.56rem}.back .stamp{width:62px;height:72px}.back .stamp-icon{font-size:1rem}.date-mark{width:87px;height:38px;font-size:.43rem}.side-label{font-size:.52rem;margin-bottom:.6rem}.greeting{font-size:1.7rem;margin-bottom:8px}.intro{font-size:.68rem;line-height:1.55;margin-bottom:8px}.section-title{font-size:.56rem;margin:9px 0 6px}.tags{gap:5px}.tag{font-size:.54rem;padding:4px 7px}.bottom-nav{margin-top:10px}}
-    @media(max-width:390px){.scene{height:86vh;min-height:650px}.hero{padding-top:1vh}.front-foot{gap:10px}.back-grid{grid-template-rows:1.28fr .72fr}.intro{font-size:.64rem}.tag{font-size:.5rem}.address{column-gap:8px}.action-btn{letter-spacing:.02em}}
-    @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important}.postcard{transition-duration:.25s}}
+    :root{--cyan:#5ee7f7;--blue:#6f8cff;--pink:#f5a4d6;--ink:#f5fbff;--muted:#9eb0c5;--line:rgba(166,220,238,.18)}
+    *{box-sizing:border-box}html{color-scheme:dark}body{margin:0;min-height:100dvh;overflow-x:hidden;background:#050b13;color:var(--ink);font-family:'DM Sans','Noto Sans TC',sans-serif}button,a,input,textarea{-webkit-tap-highlight-color:transparent}button,input,textarea{font:inherit}
+    #cyrene{position:fixed;inset:0;width:100%;height:100%;z-index:-3;background:radial-gradient(circle at 50% 18%,#173659 0,#091525 38%,#050b13 75%)}
+    .aurora{position:fixed;inset:-30%;z-index:-2;pointer-events:none;background:conic-gradient(from 210deg at 48% 45%,transparent 0 22%,rgba(56,225,241,.12) 31%,transparent 41% 58%,rgba(126,90,255,.15) 69%,transparent 79%);filter:blur(60px);animation:drift 18s ease-in-out infinite alternate}.grain{position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.045;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}@keyframes drift{to{transform:translate3d(4%,3%,0) rotate(16deg)}}
+    .page{width:min(1080px,94vw);margin:auto;padding:max(20px,3vh) 0 28px}.topline{display:flex;align-items:center;justify-content:space-between;margin:0 6px 14px;color:#8fa6bb;font-size:.66rem;letter-spacing:.14em;text-transform:uppercase}.live{display:flex;align-items:center;gap:7px;color:#b9f8ff}.live-dot{width:7px;height:7px;border-radius:50%;background:#59f0cb;box-shadow:0 0 12px #59f0cb;animation:blink 2s ease infinite}@keyframes blink{50%{opacity:.35}}
+    .scene{height:min(690px,84dvh);min-height:620px;perspective:1800px;filter:drop-shadow(0 28px 50px rgba(0,0,0,.45))}.card{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .85s cubic-bezier(.2,.75,.2,1)}.card.flipped{transform:rotateY(180deg)}.face{position:absolute;inset:0;overflow:hidden;border:1px solid rgba(172,225,246,.2);border-radius:30px;background:linear-gradient(145deg,rgba(16,38,60,.91),rgba(7,16,31,.96));backface-visibility:hidden;-webkit-backface-visibility:hidden;box-shadow:inset 0 1px rgba(255,255,255,.13)}.face:before{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle at 10% 0,rgba(69,223,242,.18),transparent 36%),linear-gradient(120deg,transparent 15%,rgba(255,255,255,.045) 34%,transparent 52%)}.front{padding:clamp(28px,5vw,58px);display:grid;grid-template-columns:1.18fr .82fr;gap:clamp(25px,5vw,70px)}.back{transform:rotateY(180deg);padding:clamp(22px,3.5vw,42px)}
+    .front-main,.scan-panel,.back-grid{position:relative;z-index:1}.front-main{display:flex;flex-direction:column;min-width:0}.event-badge{align-self:flex-start;display:inline-flex;align-items:center;gap:8px;padding:9px 13px;border:1px solid rgba(94,231,247,.3);border-radius:999px;background:rgba(41,118,143,.15);color:#c7faff;font-size:.72rem;font-weight:600}.avatar{width:74px;height:74px;margin-top:auto;border-radius:22px;display:grid;place-items:center;background:linear-gradient(145deg,#5ce1f0,#7689ff 53%,#e799cd);color:#07111f;font-size:1.75rem;font-weight:800;box-shadow:0 12px 34px rgba(69,202,240,.24);transform:rotate(-4deg)}.kicker{margin:18px 0 8px;color:#7ee9f6;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase}.name{margin:0;font-size:clamp(2.5rem,5.5vw,5.2rem);line-height:.93;letter-spacing:-.055em}.real-name{display:block;margin-top:9px;font-size:clamp(1.15rem,2vw,1.7rem);font-weight:500;color:#bcd0df;letter-spacing:-.02em}.title{max-width:600px;margin:20px 0 0;font-size:clamp(.83rem,1.4vw,1rem);line-height:1.7;color:#d5e2ec}.title span{color:#91a9bd}.tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:20px}.tag{padding:7px 10px;border:1px solid var(--line);border-radius:9px;background:rgba(104,139,180,.08);color:#bdcfdd;font-size:.7rem}.tag:first-child{color:#8af4ff;border-color:rgba(94,231,247,.3)}
+    .scan-panel{display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:28px;border-left:1px solid var(--line)}.qr-frame{position:relative;padding:15px;border-radius:25px;background:#fff;box-shadow:0 0 0 8px rgba(255,255,255,.04),0 20px 50px rgba(0,0,0,.3)}#qrcode{width:174px;height:174px}#qrcode img,#qrcode canvas{width:174px!important;height:174px!important}.scan-title{margin:26px 0 5px;font-weight:700;font-size:1.15rem}.scan-copy{margin:0;color:var(--muted);font-size:.73rem;line-height:1.6}.scan-url{margin-top:13px;color:#7ee9f6;font-size:.64rem}.flip{margin-top:28px;border:0;border-radius:14px;padding:12px 18px;background:#eefbff;color:#08131e;font-weight:700;font-size:.75rem;cursor:pointer;transition:.2s}.flip:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(94,231,247,.2)}
+    .back-grid{display:grid;grid-template-columns:1fr .9fr;height:100%;gap:clamp(22px,4vw,48px)}.back-left{display:flex;flex-direction:column;min-width:0}.back-right{min-width:0;padding-left:clamp(22px,4vw,48px);border-left:1px solid var(--line);overflow:auto;scrollbar-width:thin}.section-label{margin:0 0 8px;color:#75e8f6;font-size:.63rem;letter-spacing:.18em;text-transform:uppercase}.hello{margin:0;font-size:clamp(1.65rem,3vw,2.7rem);line-height:1.1}.bio{margin:11px 0 17px;color:#aebfcd;font-size:.75rem;line-height:1.7}.quickbar{display:grid;grid-template-columns:repeat(5,1fr);gap:7px}.quick{display:flex;min-width:0;flex-direction:column;align-items:center;gap:6px;padding:10px 3px;border:1px solid var(--line);border-radius:12px;background:rgba(100,151,179,.07);color:#dceaf2;text-decoration:none;font-size:.58rem;cursor:pointer;transition:.2s}.quick:hover{border-color:rgba(94,231,247,.45);color:#7ee9f6;transform:translateY(-2px)}.quick i{font-size:1rem}.save-btn{width:100%;margin:13px 0 17px;padding:13px;border:1px solid rgba(94,231,247,.38);border-radius:13px;background:linear-gradient(110deg,rgba(66,205,221,.21),rgba(115,106,240,.2));color:#ecfdff;font-weight:700;font-size:.76rem;cursor:pointer}.projects{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}.project{padding:11px;border:1px solid var(--line);border-radius:12px;background:rgba(8,20,36,.28)}.project i{color:#7ee9f6;margin-right:6px}.project strong{font-size:.69rem}.project p{margin:5px 0 0;color:#8195a7;font-size:.58rem}.back-actions{display:flex;gap:8px;margin-top:auto;padding-top:14px}.ghost{flex:1;padding:10px;border:1px solid var(--line);border-radius:11px;background:transparent;color:#bcd0dd;font-size:.65rem;cursor:pointer}
+    .form-title{margin:0;font-size:1.3rem}.form-sub{margin:7px 0 16px;color:#91a4b5;font-size:.68rem;line-height:1.55}.field{margin-bottom:10px}.field label{display:block;margin:0 0 5px;color:#b8c9d5;font-size:.62rem}.field input,.field textarea{width:100%;border:1px solid var(--line);border-radius:11px;background:rgba(4,13,25,.55);color:#effcff;padding:10px 11px;outline:none;font-size:.72rem}.field input:focus,.field textarea:focus{border-color:#61dce9;box-shadow:0 0 0 3px rgba(94,231,247,.08)}.field textarea{height:65px;resize:vertical}.form-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px}.submit,.mailto{border:0;border-radius:11px;padding:11px 7px;font-size:.67rem;font-weight:700;cursor:pointer}.submit{background:#eafcff;color:#07131d}.mailto{background:rgba(98,125,255,.18);border:1px solid rgba(135,150,255,.3);color:#e7eaff}.privacy{margin:11px 0 0;color:#708698;font-size:.57rem;line-height:1.5}.saved{margin-top:13px;padding-top:12px;border-top:1px solid var(--line);color:#8ba0b1;font-size:.61rem}.saved strong{color:#d9f7fa}.toast{position:fixed;z-index:30;left:50%;bottom:25px;max-width:90vw;transform:translate(-50%,20px);padding:11px 18px;border:1px solid rgba(126,229,242,.3);border-radius:99px;background:rgba(6,18,32,.92);color:#e6fdff;font-size:.72rem;opacity:0;pointer-events:none;transition:.25s}.toast.show{opacity:1;transform:translate(-50%,0)}
+    @media(max-width:720px){.page{width:94vw;padding-top:12px}.topline{font-size:.55rem}.scene{height:84dvh;min-height:650px}.face{border-radius:23px}.front{padding:25px 21px;grid-template-columns:1fr;grid-template-rows:1fr auto;gap:18px}.event-badge{font-size:.6rem;padding:7px 10px}.avatar{width:56px;height:56px;margin-top:25px;font-size:1.3rem;border-radius:17px}.kicker{margin-top:12px}.name{font-size:clamp(2.35rem,12vw,3.7rem)}.title{margin-top:13px;font-size:.72rem}.tags{margin-top:12px}.tag{font-size:.57rem;padding:5px 7px}.scan-panel{border:0;border-top:1px solid var(--line);padding:16px 0 0;display:grid;grid-template-columns:auto 1fr auto;gap:15px;text-align:left}.qr-frame{padding:8px;border-radius:14px}#qrcode,#qrcode img,#qrcode canvas{width:92px!important;height:92px!important}.scan-title{margin:0;font-size:.9rem}.scan-url{margin-top:5px}.flip{margin:0;padding:11px 12px}.back{padding:19px 17px}.back-grid{grid-template-columns:1fr;grid-template-rows:auto 1fr;gap:14px}.back-right{padding:14px 0 0;border-left:0;border-top:1px solid var(--line)}.hello{font-size:1.5rem}.bio{font-size:.64rem;margin:7px 0 10px}.quick{padding:8px 2px}.save-btn{margin:9px 0 10px;padding:10px}.projects{display:none}.back-actions{position:absolute;right:0;top:0;padding:0}.ghost{flex:none;padding:7px 9px}.form-sub{margin-bottom:10px}.field{margin-bottom:7px}.field input,.field textarea{padding:8px 10px}.field textarea{height:52px}.privacy{margin-top:7px}.saved{margin-top:8px;padding-top:8px}}
+    @media(max-width:390px){.scene{min-height:630px}.scan-copy{display:none}.quickbar{gap:4px}.quick{font-size:.5rem}.name{font-size:2.3rem}.form-sub{display:none}}
+    @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important}.card{transition-duration:.2s}}
   </style>
 </head>
 <body>
-  <canvas id="sea" aria-hidden="true"></canvas><div class="aurora"></div><div class="noise"></div>
-  <main class="shell">
-    <p class="eyebrow">A message carried by light &amp; ripples · 昔漣</p>
-    <section class="scene" aria-label="Einosensokami 的雙面電子明信片">
-      <div class="postcard" id="postcard" tabindex="0" role="button" aria-label="翻轉明信片" aria-pressed="false">
+  <canvas id="cyrene" aria-hidden="true"></canvas><div class="aurora"></div><div class="grain"></div>
+  <main class="page">
+    <header class="topline"><span>Cyrene Social Protocol · 現實連結模式</span><span class="live"><i class="live-dot"></i>Ready to connect</span></header>
+    <section class="scene" aria-label="Einosensokami 的雙面活動電子名片">
+      <div class="card" id="card">
         <article class="face front" id="front">
-          <div class="ornament"></div><div class="corner c1"></div><div class="corner c2"></div>
-          <header class="postal-row">
-            <div class="mini-mark">Private Correspondence<br>No. 0826 · Formosa<br>Via Starlight</div>
-            <div class="stamp" aria-label="Taiwan 2026 AI Application Planner 郵票"><div class="stamp-inner"><i class="fa-solid fa-water stamp-icon"></i><small>TAIWAN<br>2026<br>AI PLANNER</small></div></div>
-            <div class="postmark">TAIWAN · 2026<br>AI APPLICATION PLANNER</div>
-          </header>
-          <div class="hero">
-            <div class="sigil"><i class="fa-solid fa-sparkles"></i></div>
-            <h1>Einosensokami</h1>
-            <p class="role">AI Application Planner <span style="color:#61708b">|</span> 人工智慧應用工程</p>
-            <blockquote class="quote">「從想法到可行方案，讓技術為人服務。」</blockquote>
-          </div>
-          <footer class="front-foot">
-            <div class="seal" aria-label="E wax seal">E</div>
-            <button class="flip-btn" type="button" data-flip><i class="fa-solid fa-rotate-right mr-2"></i>Click to Flip Postcard / 點擊翻轉明信片</button>
-          </footer>
+          <section class="front-main">
+            <div class="event-badge"><i class="fa-solid fa-location-dot"></i>創想未來黑客松 BUILDMODE 2026 · AI Agents &amp; Automation</div>
+            <div class="avatar" aria-label="Einosensokami monogram">EW</div>
+            <p class="kicker">Hello, fellow builder —</p>
+            <h1 class="name">Einosensokami<span class="real-name">John Wu · 吳同學</span></h1>
+            <p class="title">AI Application Planner <span>/ NUTC AI Department<br>國立臺中科技大學 · 人工智慧應用工程學系</span></p>
+            <div class="tags"><span class="tag">#AIAgents</span><span class="tag">#BugBounty</span><span class="tag">#FullStack</span><span class="tag">#MachineLearning</span></div>
+          </section>
+          <aside class="scan-panel">
+            <div class="qr-frame"><div id="qrcode" aria-label="掃描前往 Einosensokami Portfolio"></div></div>
+            <div><h2 class="scan-title">Scan. Connect. Build.</h2><p class="scan-copy">掃描開啟作品集<br>Let's make the next idea real.</p><p class="scan-url">einosensokami.github.io/self/</p></div>
+            <button class="flip" type="button" data-flip="back">交換聯絡資訊 <i class="fa-solid fa-arrow-right ml-2"></i></button>
+          </aside>
         </article>
-
         <article class="face back" id="back">
-          <div class="ornament"></div>
           <div class="back-grid">
-            <section class="message">
-              <p class="side-label">Message · 訊息與特長</p>
-              <h2 class="greeting">Dear curious soul,</h2>
-              <p class="intro">你好，我是 Einosensokami。喜歡把 AI、開源技術與一點想像力，編織成真正可用的產品。願每一次相遇，都像漣漪般把好奇與善意傳得更遠。</p>
-              <h3 class="section-title"><i class="fa-brands fa-github mr-2"></i>Open Source Showcase</h3>
-              <div class="tags">
-                <span class="tag open"><i class="fa-solid fa-chart-line"></i>AI Stock Assistant</span><span class="tag open"><i class="fa-solid fa-paw"></i>Web-Ferret-Pet</span><span class="tag open"><i class="fa-solid fa-location-arrow"></i>Vision AR Nav Agent</span><span class="tag open"><i class="fa-solid fa-wind"></i>AgentAQI</span><span class="tag open"><i class="fa-solid fa-display"></i>Computer Use MCP</span>
+            <section class="back-left">
+              <p class="section-label">Quick connect · 快速連結</p>
+              <h2 class="hello">Nice meeting you! <span style="color:#78e7f3">很高興認識你。</span></h2>
+              <p class="bio">我把 AI Agents、資安思維與全端開發，組合成能真正落地的產品。歡迎聊專案、黑客松組隊、研究或任何瘋狂點子。</p>
+              <div class="quickbar">
+                <button class="quick" id="copyEmail" type="button"><i class="fa-solid fa-envelope"></i>Copy Email</button>
+                <a class="quick" href="https://github.com/Einosensokami" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i>GitHub</a>
+                <a class="quick" href="https://einosensokami.github.io/self/" target="_blank" rel="noopener"><i class="fa-solid fa-globe"></i>Portfolio</a>
+                <a class="quick" href="https://www.instagram.com/einosensokami/" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i>Instagram</a>
+                <a class="quick" href="https://www.facebook.com/einosensokami" target="_blank" rel="noopener"><i class="fa-brands fa-facebook"></i>Facebook</a>
               </div>
-              <h3 class="section-title"><i class="fa-solid fa-gamepad mr-2"></i>Favorite Games</h3>
-              <div class="tags">
-                <span class="tag">原神</span><span class="tag">崩壞：星穹鐵道</span><span class="tag">魔物獵人：荒野</span><span class="tag">暗影詩章</span><span class="tag">空洞騎士</span><span class="tag">Master Duel</span><span class="tag">鳴潮</span>
+              <button class="save-btn" id="saveVcard" type="button"><i class="fa-solid fa-address-card mr-2"></i>儲存至手機聯絡人 · Save Contact (.vcf)</button>
+              <p class="section-label">Selected builds · 專案亮點</p>
+              <div class="projects">
+                <div class="project"><strong><i class="fa-solid fa-chart-line"></i>AI Stock Assistant</strong><p>Agentic market research workflow</p></div>
+                <div class="project"><strong><i class="fa-solid fa-wind"></i>AgentAQI</strong><p>Environmental AI agent</p></div>
+                <div class="project"><strong><i class="fa-solid fa-location-arrow"></i>Vision AR Nav</strong><p>Vision-powered navigation agent</p></div>
+                <div class="project"><strong><i class="fa-solid fa-display"></i>Computer Use MCP</strong><p>Automation &amp; tool integration</p></div>
               </div>
+              <div class="back-actions"><button class="ghost" type="button" data-flip="front"><i class="fa-solid fa-arrow-left mr-1"></i> 封面</button><button class="ghost" id="exportBtn" type="button"><i class="fa-solid fa-image mr-1"></i> PNG</button></div>
             </section>
-            <section class="address">
-              <div class="back-top">
-                <div><p class="side-label">Post · 郵務與聯絡</p><div class="date-mark">TAIPEI<br>2026-08-26</div></div>
-                <div class="stamp"><div class="stamp-inner"><i class="fa-solid fa-water stamp-icon"></i><small>CYRENE<br>LIGHT MAIL</small></div></div>
-              </div>
-              <address class="contact-list not-italic">
-                <a class="contact" href="mailto:buw8683@gmail.com"><i class="fa-solid fa-envelope"></i><span>buw8683@gmail.com</span></a>
-                <a class="contact" href="https://github.com/Einosensokami" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i><span>github.com/Einosensokami</span></a>
-                <a class="contact" href="https://einosensokami.github.io/self" target="_blank" rel="noopener"><i class="fa-solid fa-globe"></i><span>einosensokami.github.io/self</span></a>
-              </address>
-              <div class="actions">
-                <button class="action-btn primary" id="heartBtn" type="button"><i class="fa-solid fa-heart mr-2"></i>Send Heart / 傳送祝福與漣漪♪</button>
-                <button class="action-btn" id="exportBtn" type="button"><i class="fa-solid fa-download mr-2"></i>Export / 下載明信片</button>
-              </div>
+            <section class="back-right">
+              <p class="section-label">Mutual exchange · 互相交換</p>
+              <h2 class="form-title">留下你的聯絡方式</h2>
+              <p class="form-sub">填好後可儲存在此裝置，或直接開啟 Email 寄給 John。</p>
+              <form id="exchangeForm">
+                <div class="field"><label for="guestName">姓名 / Name *</label><input id="guestName" name="name" autocomplete="name" required placeholder="How should I call you?"></div>
+                <div class="field"><label for="guestContact">Email 或 LINE ID / Contact *</label><input id="guestContact" name="contact" autocomplete="email" required placeholder="you@email.com / LINE ID"></div>
+                <div class="field"><label for="guestNote">備註 / Note</label><textarea id="guestNote" name="note" placeholder="Nice meeting you!"></textarea></div>
+                <div class="form-actions"><button class="submit" type="submit"><i class="fa-solid fa-bookmark mr-1"></i> 儲存於此裝置</button><button class="mailto" id="mailExchange" type="button"><i class="fa-solid fa-paper-plane mr-1"></i> Email 給 John</button></div>
+              </form>
+              <p class="privacy"><i class="fa-solid fa-shield-halved mr-1"></i>資料只儲存在這台裝置的瀏覽器中，不會自動上傳。</p>
+              <div class="saved" id="savedState">尚未儲存交換資料 · No contact saved yet.</div>
             </section>
           </div>
         </article>
       </div>
     </section>
-    <nav class="bottom-nav" aria-label="明信片導覽"><button type="button" data-flip>FRONT 封面</button><span class="dot"></span><span>CLICK CARD TO TURN</span><span class="dot"></span><button type="button" data-flip>BACK 背面</button></nav>
   </main>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
   <script>
-    (() => {
-      const card = document.getElementById('postcard');
-      const canvas = document.getElementById('sea');
-      const ctx = canvas.getContext('2d');
-      const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
-      let flipped = false, dpr = 1, particles = [], ripples = [], pointer = {x: innerWidth/2, y: innerHeight/2};
-
-      function flip(force) {
-        flipped = typeof force === 'boolean' ? force : !flipped;
-        card.classList.toggle('is-flipped', flipped);
-        card.setAttribute('aria-pressed', String(flipped));
-      }
-      document.querySelectorAll('[data-flip]').forEach((btn, i) => btn.addEventListener('click', e => { e.stopPropagation(); flip(i === 2 ? true : i === 1 ? false : undefined); }));
-      card.addEventListener('click', e => { if (!e.target.closest('a,button')) flip(); });
-      card.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); flip(); } });
-
-      function resize() {
-        dpr = Math.min(devicePixelRatio || 1, 2); canvas.width = innerWidth*dpr; canvas.height = innerHeight*dpr; canvas.style.width=innerWidth+'px'; canvas.style.height=innerHeight+'px'; ctx.setTransform(dpr,0,0,dpr,0,0);
-        const count = reduced ? 22 : Math.min(95, Math.floor(innerWidth/14));
-        particles = Array.from({length:count}, () => ({x:Math.random()*innerWidth,y:Math.random()*innerHeight,r:Math.random()*1.7+.35,vx:(Math.random()-.5)*.16,vy:-Math.random()*.25-.04,a:Math.random()*.65+.16,h:Math.random()>.55?190:260}));
-      }
-      function addRipple(x,y,bright=false){ ripples.push({x,y,r:2,a:bright?1:.48,w:bright?2:1}); }
-      addEventListener('resize', resize); resize();
-      addEventListener('pointermove', e => { pointer={x:e.clientX,y:e.clientY}; if(!reduced && Math.random()>.94) addRipple(e.clientX,e.clientY); });
-      addEventListener('pointerdown', e => { if(!e.target.closest('button,a')) addRipple(e.clientX,e.clientY,true); });
-
-      function draw(){
-        ctx.clearRect(0,0,innerWidth,innerHeight);
-        const glow=ctx.createRadialGradient(pointer.x,pointer.y,0,pointer.x,pointer.y,260); glow.addColorStop(0,'rgba(102,213,255,.075)'); glow.addColorStop(1,'rgba(102,213,255,0)'); ctx.fillStyle=glow;ctx.fillRect(0,0,innerWidth,innerHeight);
-        particles.forEach(p=>{ p.x+=p.vx;p.y+=p.vy;if(p.y< -5){p.y=innerHeight+5;p.x=Math.random()*innerWidth}if(p.x<0)p.x=innerWidth;if(p.x>innerWidth)p.x=0;ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle=`hsla(${p.h},90%,78%,${p.a})`;ctx.shadowBlur=9;ctx.shadowColor=`hsla(${p.h},90%,72%,.8)`;ctx.fill() }); ctx.shadowBlur=0;
-        ripples.forEach(r=>{r.r+=r.w*1.35;r.a*=.974;ctx.beginPath();ctx.arc(r.x,r.y,r.r,0,Math.PI*2);ctx.strokeStyle=`rgba(121,225,255,${r.a})`;ctx.lineWidth=Math.max(.35,2-r.r/90);ctx.stroke()}); ripples=ripples.filter(r=>r.a>.02&&r.r<280);
-        requestAnimationFrame(draw);
-      } draw();
-
-      const heartBtn=document.getElementById('heartBtn');
-      heartBtn.addEventListener('click', e=>{
-        e.stopPropagation(); const b=heartBtn.getBoundingClientRect(), x=b.left+b.width/2, y=b.top+b.height/2; addRipple(x,y,true); setTimeout(()=>addRipple(x,y,true),180);
-        for(let i=0;i<14;i++){const h=document.createElement('i');h.className='fa-solid fa-heart heart';h.style.left=x+'px';h.style.top=y+'px';h.style.fontSize=(9+Math.random()*15)+'px';h.style.setProperty('--x',(Math.random()*220-110)+'px');h.style.setProperty('--y',(-70-Math.random()*190)+'px');h.style.setProperty('--r',(Math.random()*90-45)+'deg');h.style.animationDelay=(Math.random()*.22)+'s';document.body.appendChild(h);setTimeout(()=>h.remove(),2200)}
-        toast('祝福已乘著漣漪送出 ♪');
+    (()=>{
+      const PORTFOLIO='https://einosensokami.github.io/self/';
+      const EMAIL='buw8683@gmail.com';
+      const card=document.getElementById('card');
+      const toastEl=document.getElementById('toast');let toastTimer;
+      const toast=msg=>{toastEl.textContent=msg;toastEl.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>toastEl.classList.remove('show'),2200)};
+      document.querySelectorAll('[data-flip]').forEach(btn=>btn.addEventListener('click',()=>card.classList.toggle('flipped',btn.dataset.flip==='back')));
+      if(window.QRCode)new QRCode(document.getElementById('qrcode'),{text:PORTFOLIO,width:174,height:174,colorDark:'#07111f',colorLight:'#ffffff',correctLevel:QRCode.CorrectLevel.H});
+      else document.getElementById('qrcode').innerHTML='<a href="'+PORTFOLIO+'" style="color:#07111f">Open portfolio</a>';
+      document.getElementById('copyEmail').addEventListener('click',async()=>{try{await navigator.clipboard.writeText(EMAIL);toast('Email 已複製 · Copied!')}catch{location.href='mailto:'+EMAIL}});
+      document.getElementById('saveVcard').addEventListener('click',()=>{
+        const vcard=['BEGIN:VCARD','VERSION:3.0','N:Wu;John;;;','FN:Einosensokami (John Wu)','ORG:NUTC AI Department','TITLE:AI Application Planner','EMAIL;TYPE=INTERNET:'+EMAIL,'URL;TYPE=Portfolio:'+PORTFOLIO,'URL;TYPE=GitHub:https://github.com/Einosensokami','NOTE:AI Agents / Bug Bounty / Full Stack / Machine Learning','END:VCARD'].join('\r\n');
+        const url=URL.createObjectURL(new Blob([vcard],{type:'text/vcard;charset=utf-8'}));const a=document.createElement('a');a.href=url;a.download='Einosensokami-John-Wu.vcf';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);toast('聯絡人檔案已下載 · Contact saved');
       });
-      let toastTimer; function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.remove('show'),2200)}
-
-      document.getElementById('exportBtn').addEventListener('click', async e=>{
-        e.stopPropagation(); const btn=e.currentTarget, old=btn.innerHTML; btn.disabled=true;btn.innerHTML='<i class="fa-solid fa-circle-notch fa-spin mr-2"></i>Rendering...';
-        try{
-          if(!window.html2canvas) throw new Error('html2canvas unavailable');
-          const target=document.getElementById(flipped?'back':'front');
-          const shot=await html2canvas(target,{backgroundColor:'#0b1024',scale:Math.min(devicePixelRatio||1,2),useCORS:true,logging:false});
-          const link=document.createElement('a');link.download=`Einosensokami-postcard-${flipped?'back':'front'}.png`;link.href=shot.toDataURL('image/png');link.click();toast('明信片已製成 PNG ✦');
-        }catch(err){console.error(err);toast('匯出失敗，請確認網路後再試一次');}finally{btn.disabled=false;btn.innerHTML=old}
-      });
+      const form=document.getElementById('exchangeForm'),saved=document.getElementById('savedState');
+      const readForm=()=>({name:form.name.value.trim(),contact:form.contact.value.trim(),note:form.note.value.trim()||'Nice meeting you!'});
+      const showSaved=data=>{saved.innerHTML=data?'<strong>'+escapeHtml(data.name)+'</strong> · '+escapeHtml(data.contact)+'<br>'+escapeHtml(data.note):'尚未儲存交換資料 · No contact saved yet.'};
+      const escapeHtml=s=>String(s).replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));
+      try{const prior=JSON.parse(localStorage.getItem('cyreneExchange'));if(prior){form.name.value=prior.name||'';form.contact.value=prior.contact||'';form.note.value=prior.note||'';showSaved(prior)}}catch{}
+      form.addEventListener('submit',e=>{e.preventDefault();const data=readForm();try{localStorage.setItem('cyreneExchange',JSON.stringify(data));showSaved(data);toast('已安全儲存在此裝置 · Saved locally')}catch{toast('瀏覽器阻擋本機儲存')}});
+      document.getElementById('mailExchange').addEventListener('click',()=>{if(!form.reportValidity())return;const d=readForm();location.href='mailto:'+EMAIL+'?subject='+encodeURIComponent('Nice meeting you — '+d.name)+'&body='+encodeURIComponent('Hi John!\n\n我是 '+d.name+'。\n聯絡方式：'+d.contact+'\n\n'+d.note+'\n\nNice meeting you!')});
+      document.getElementById('exportBtn').addEventListener('click',async()=>{try{if(!window.html2canvas)throw Error();const shot=await html2canvas(document.getElementById('back'),{backgroundColor:'#07111f',scale:Math.min(devicePixelRatio||1,2),useCORS:true,logging:false});const a=document.createElement('a');a.download='Einosensokami-networking-card.png';a.href=shot.toDataURL('image/png');a.click();toast('Networking card PNG 已匯出')}catch{toast('PNG 匯出失敗，請確認網路連線')}});
+      const canvas=document.getElementById('cyrene'),ctx=canvas.getContext('2d'),reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;let dpr=1,dots=[],ripples=[];
+      function resize(){dpr=Math.min(devicePixelRatio||1,2);canvas.width=innerWidth*dpr;canvas.height=innerHeight*dpr;canvas.style.width=innerWidth+'px';canvas.style.height=innerHeight+'px';ctx.setTransform(dpr,0,0,dpr,0,0);dots=Array.from({length:reduced?20:Math.min(75,innerWidth/16)},()=>({x:Math.random()*innerWidth,y:Math.random()*innerHeight,r:Math.random()*1.4+.3,v:Math.random()*.18+.03,a:Math.random()*.5+.15}))}resize();addEventListener('resize',resize);addEventListener('pointerdown',e=>ripples.push({x:e.clientX,y:e.clientY,r:2,a:.65}));
+      function draw(){ctx.clearRect(0,0,innerWidth,innerHeight);dots.forEach(p=>{p.y-=p.v;if(p.y<0){p.y=innerHeight;p.x=Math.random()*innerWidth}ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle='rgba(126,231,245,'+p.a+')';ctx.fill()});ripples.forEach(r=>{r.r+=1.5;r.a*=.975;ctx.beginPath();ctx.arc(r.x,r.y,r.r,0,Math.PI*2);ctx.strokeStyle='rgba(100,229,244,'+r.a+')';ctx.stroke()});ripples=ripples.filter(r=>r.a>.02);requestAnimationFrame(draw)}draw();
     })();
   </script>
 </body>
