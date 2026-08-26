@@ -6,6 +6,7 @@ export type Dictionary = {
   "nav.skills": string;
   "nav.experience": string;
   "nav.contact": string;
+  "nav.card": string;
   "hero.eyebrow": string;
   "hero.title": string;
   "hero.subtitle": string;
@@ -41,6 +42,7 @@ export const dictionaries: Record<Lang, Dictionary> = {
     "nav.skills": "專長",
     "nav.experience": "經歷",
     "nav.contact": "聯絡",
+    "nav.card": "交流名片",
     "hero.eyebrow": "AI APPLICATION PLANNER · TAIWAN",
     "hero.title": "我是 Einosensokami。",
     "hero.subtitle": "",
@@ -74,6 +76,7 @@ export const dictionaries: Record<Lang, Dictionary> = {
     "nav.skills": "Expertise",
     "nav.experience": "Experience",
     "nav.contact": "Contact",
+    "nav.card": "Card",
     "hero.eyebrow": "AI APPLICATION PLANNER · TAIWAN",
     "hero.title": "I’m Einosensokami.",
     "hero.subtitle": "",
