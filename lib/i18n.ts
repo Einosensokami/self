@@ -28,6 +28,8 @@ export type Dictionary = {
   "experience.e2.role": string;
   "experience.e2.org": string;
   "experience.e2.desc": string;
+  "experience.e2.link1.title": string;
+  "experience.e2.link2.title": string;
   "contact.label": string;
   "contact.title": string;
   "contact.body": string;
@@ -61,9 +63,11 @@ export const dictionaries: Record<Lang, Dictionary> = {
     "experience.e1.org": "國立臺中科技大學",
     "experience.e1.desc": "投入資訊技術、AI 應用與軟體工程的學習與實作。",
     "experience.e2.period": "2026 夏季",
-    "experience.e2.role": "教學助理",
-    "experience.e2.org": "智慧物流青年 AI 實作培訓",
-    "experience.e2.desc": "協助學員完成 AI 實作專題，並提供演算法應用與開發方向的引導。",
+    "experience.e2.role": "教學助理 (TA)",
+    "experience.e2.org": "青年 AI 實戰養成班 · 智慧物流班（工研院服科中心）",
+    "experience.e2.desc": "擔任實戰養成班教學助理，協助學員完成 AI 物流與演算法實作專題開發。",
+    "experience.e2.link1.title": "養成班官網 (工研院)",
+    "experience.e2.link2.title": "學員專題成果展",
     "contact.label": "04 / CONTACT",
     "contact.title": "一起做點有意思的事。",
     "contact.body": "無論是合作、交流，或只是想聊聊 AI 與產品，歡迎來信。",
@@ -95,9 +99,11 @@ export const dictionaries: Record<Lang, Dictionary> = {
     "experience.e1.org": "National Taichung University of Science and Technology",
     "experience.e1.desc": "Studying information technology, AI applications, and hands-on software engineering.",
     "experience.e2.period": "Summer 2026",
-    "experience.e2.role": "Teaching Assistant",
-    "experience.e2.org": "Smart Logistics Youth AI Practical Training",
-    "experience.e2.desc": "Supported learners on AI projects with guidance on development and applied algorithms.",
+    "experience.e2.role": "Teaching Assistant (TA)",
+    "experience.e2.org": "Youth AI Practical Training · Smart Logistics (ITRI SSTC)",
+    "experience.e2.desc": "Guided learners through hands-on AI logistics projects, algorithm development, and practical implementations.",
+    "experience.e2.link1.title": "Program Page (ITRI)",
+    "experience.e2.link2.title": "Student Projects Showcase",
     "contact.label": "04 / CONTACT",
     "contact.title": "Let’s make something meaningful.",
     "contact.body": "For a collaboration, an exchange of ideas, or a conversation about AI and products — my inbox is open.",

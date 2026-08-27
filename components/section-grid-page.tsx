@@ -90,9 +90,30 @@ const favoriteGames = [
 export function SectionGridPage() {
   const { t } = useLang();
   useReveal();
-  const experiences = [
+  const experiences: Array<{
+    period: string;
+    role: string;
+    org: string;
+    desc: string;
+    links?: Array<{ title: string; url: string }>;
+  }> = [
     { period: t["experience.e1.period"], role: t["experience.e1.role"], org: t["experience.e1.org"], desc: t["experience.e1.desc"] },
-    { period: t["experience.e2.period"], role: t["experience.e2.role"], org: t["experience.e2.org"], desc: t["experience.e2.desc"] },
+    {
+      period: t["experience.e2.period"],
+      role: t["experience.e2.role"],
+      org: t["experience.e2.org"],
+      desc: t["experience.e2.desc"],
+      links: [
+        {
+          title: t["experience.e2.link1.title"],
+          url: "https://chihtengchen.github.io/Public/Youth_AI_LPage/#home",
+        },
+        {
+          title: t["experience.e2.link2.title"],
+          url: "https://wsz-1234.github.io/youth-ai-project/",
+        },
+      ],
+    },
   ];
 
   return <div id="top" className="relative overflow-hidden bg-[#f7f3ec] text-[#1e2a38] dark:bg-[#0f1724] dark:text-[#e8e4de]">
@@ -132,7 +153,7 @@ export function SectionGridPage() {
 
       <section id="games" className="reveal px-5 py-24 sm:px-8 lg:px-12 lg:py-32"><div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-12"><p className="section-label lg:col-span-3">02 / 喜歡的遊戲</p><div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:col-span-9 xl:grid-cols-4">{favoriteGames.map((game) => <article key={game.name} className="group overflow-hidden rounded-3xl bg-white/45 p-3 shadow-sm backdrop-blur-sm dark:bg-white/5"><img src={game.image} alt={`${game.name} 應用程式圖示`} className="aspect-square w-full rounded-2xl object-cover transition duration-300 group-hover:scale-[1.03]" /><p className="px-2 pb-2 pt-4 text-sm font-semibold tracking-[-.02em]">{game.name}</p></article>)}</div></div></section>
 
-      <section id="experience" className="reveal px-5 py-24 sm:px-8 lg:px-12 lg:py-32"><div className="mx-auto max-w-6xl"><div className="grid gap-5 lg:grid-cols-12"><p className="section-label lg:col-span-3">{t["experience.label"]}</p><h2 className="text-4xl font-medium tracking-[-.05em] sm:text-6xl lg:col-span-9">{t["experience.title"]}</h2></div><ol className="mt-16 border-t border-[#1e2a38]/20 dark:border-white/20">{experiences.map((item, index) => <li key={item.role} className="grid gap-4 border-b border-[#1e2a38]/20 py-8 dark:border-white/20 md:grid-cols-12"><p className="text-sm font-semibold md:col-span-2">{item.period}</p><div className="md:col-span-6"><h3 className="text-xl font-semibold tracking-[-.03em]">{item.role}</h3><p className="mt-2 text-sm text-[#50606f] dark:text-white/60">{item.org}</p></div><p className="text-sm leading-6 text-[#50606f] dark:text-white/50 md:col-span-4">{item.desc}</p><span className="hidden text-right text-sm text-[#7a8490] dark:text-white/30 md:block">0{index + 1}</span></li>)}</ol></div></section>
+      <section id="experience" className="reveal px-5 py-24 sm:px-8 lg:px-12 lg:py-32"><div className="mx-auto max-w-6xl"><div className="grid gap-5 lg:grid-cols-12"><p className="section-label lg:col-span-3">{t["experience.label"]}</p><h2 className="text-4xl font-medium tracking-[-.05em] sm:text-6xl lg:col-span-9">{t["experience.title"]}</h2></div><ol className="mt-16 border-t border-[#1e2a38]/20 dark:border-white/20">{experiences.map((item, index) => <li key={item.role} className="grid gap-4 border-b border-[#1e2a38]/20 py-8 dark:border-white/20 md:grid-cols-12"><p className="text-sm font-semibold md:col-span-2">{item.period}</p><div className="md:col-span-6"><h3 className="text-xl font-semibold tracking-[-.03em]">{item.role}</h3><p className="mt-2 text-sm text-[#50606f] dark:text-white/60">{item.org}</p></div><div className="md:col-span-4 flex flex-col justify-between"><p className="text-sm leading-6 text-[#50606f] dark:text-white/50">{item.desc}</p>{item.links && (<div className="mt-3 flex flex-wrap gap-2">{item.links.map((link) => (<a key={link.url} href={link.url} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 rounded-full border border-[#1e2a38]/20 px-3 py-1.5 text-xs font-semibold text-[#1e2a38] transition hover:border-[#db6049] hover:text-[#db6049] dark:border-white/20 dark:text-white/80 dark:hover:border-[#db6049] dark:hover:text-[#db6049]"><span>{link.title}</span><ExternalLink size={12} /></a>))}</div>)}</div><span className="hidden text-right text-sm text-[#7a8490] dark:text-white/30 md:block">0{index + 1}</span></li>)}</ol></div></section>
 
       <section id="contact" className="reveal px-5 py-24 text-[#1e2a38] dark:text-[#e8e4de] sm:px-8 lg:px-12 lg:py-32"><div className="mx-auto max-w-6xl border-t border-[#1e2a38]/20 pt-16 dark:border-white/20"><p className="section-label">{t["contact.label"]}</p><div className="mt-14 grid gap-10 lg:grid-cols-12"><div className="lg:col-span-8"><h2 className="max-w-3xl text-5xl font-semibold tracking-[-.065em] sm:text-7xl">{t["contact.title"]}</h2><p className="mt-7 max-w-lg text-lg leading-8 text-[#50606f] dark:text-white/60">{t["contact.body"]}</p></div><div className="flex h-fit flex-col gap-3 lg:col-span-4"><a href="mailto:buw8683@gmail.com" className="group flex items-center justify-between rounded-full bg-[#1e2a38] px-6 py-5 text-sm font-semibold text-white transition hover:bg-white hover:text-[#1e2a38] dark:bg-white/10 dark:hover:bg-white dark:hover:text-[#0f1724]"><span>buw8683@gmail.com</span><Mail size={19} className="transition group-hover:-translate-y-1 group-hover:translate-x-1" /></a><a href="https://github.com/Einosensokami" target="_blank" rel="noreferrer" className="group flex items-center justify-between rounded-full bg-[#1e2a38] px-6 py-5 text-sm font-semibold text-white transition hover:bg-white hover:text-[#1e2a38] dark:bg-white/10 dark:hover:bg-white dark:hover:text-[#0f1724]"><span>github.com/Einosensokami</span><ExternalLink size={19} className="transition group-hover:-translate-y-1 group-hover:translate-x-1" /></a></div></div>
       <div className="mt-10 flex gap-3 lg:col-span-12">
