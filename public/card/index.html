@@ -76,7 +76,7 @@
               <div class="quickbar">
                 <button class="quick" id="copyEmail" type="button"><i class="fa-solid fa-envelope"></i>Copy Email</button>
                 <a class="quick" id="githubBtn" href="https://github.com/Einosensokami" target="_blank" rel="noopener" onclick="event.stopPropagation(); window.open('https://github.com/Einosensokami','_blank'); return false;"><i class="fa-brands fa-github"></i>GitHub</a>
-                <a class="quick" href="https://line.me/ti/p/~john0913666" target="_blank" rel="noopener" onclick="event.stopPropagation(); window.open(this.href,'_blank'); return false;"><i class="fa-brands fa-line"></i>LINE</a>
+                <a class="quick" href="https://discord.com/users/830789294679523358" target="_blank" rel="noopener" onclick="event.stopPropagation(); window.open(this.href,'_blank'); return false;"><i class="fa-brands fa-discord"></i>Discord</a>
                 <a class="quick" href="https://einosensokami.github.io/self/" target="_blank" rel="noopener" onclick="event.stopPropagation(); window.open(this.href,'_blank'); return false;"><i class="fa-solid fa-globe"></i>Portfolio</a>
                 <a class="quick" href="https://www.instagram.com/einosensokami/" target="_blank" rel="noopener" onclick="event.stopPropagation(); window.open(this.href,'_blank'); return false;"><i class="fa-brands fa-instagram"></i>Instagram</a>
                 <a class="quick" href="https://www.facebook.com/einosensokami" target="_blank" rel="noopener" onclick="event.stopPropagation(); window.open(this.href,'_blank'); return false;"><i class="fa-brands fa-facebook"></i>Facebook</a>
@@ -134,7 +134,7 @@
       else document.getElementById('qrcode').innerHTML='<a href="'+PORTFOLIO+'" style="color:#07111f">Open portfolio</a>';
       document.getElementById('copyEmail').addEventListener('click',async()=>{try{await navigator.clipboard.writeText(EMAIL);toast('Email 已複製 · Copied!')}catch{location.href='mailto:'+EMAIL}});
       document.getElementById('saveVcard').addEventListener('click',()=>{
-        const vcard=['BEGIN:VCARD','VERSION:3.0','N:Einosensokami;;;;','FN:永恆戰神 (Einosensokami)','ORG:NUTC AI Department','TITLE:AI Application Planner','EMAIL;TYPE=INTERNET:'+EMAIL,'URL;TYPE=Portfolio:'+PORTFOLIO,'URL;TYPE=GitHub:https://github.com/Einosensokami','URL;TYPE=LINE:https://line.me/ti/p/~john0913666','NOTE:AI Agents / Bug Bounty / Full Stack / Machine Learning','END:VCARD'].join('\r\n');
+        const vcard=['BEGIN:VCARD','VERSION:3.0','N:Einosensokami;;;;','FN:永恆戰神 (Einosensokami)','ORG:NUTC AI Department','TITLE:AI Application Planner','EMAIL;TYPE=INTERNET:'+EMAIL,'URL;TYPE=Portfolio:'+PORTFOLIO,'URL;TYPE=GitHub:https://github.com/Einosensokami','URL;TYPE=Discord:https://discord.com/users/830789294679523358','NOTE:AI Agents / Bug Bounty / Full Stack / Machine Learning','END:VCARD'].join('\r\n');
         const url=URL.createObjectURL(new Blob([vcard],{type:'text/vcard;charset=utf-8'}));const a=document.createElement('a');a.href=url;a.download='Einosensokami.vcf';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);toast('聯絡人檔案已下載 · Contact saved');
       });
       
