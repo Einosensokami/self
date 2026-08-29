@@ -20,9 +20,6 @@ export const metadata: Metadata = {
     description: "AI application planning, workflow design, and implementation portfolio.",
   },
   keywords: ["Einosensokami", "AI", "portfolio", "Taiwan", "workflow", "Next.js"],
-  other: {
-    "discord-site-verification": "dh=3192cb1fdd2dd6839e9c10b1d4a3d52307f039d0",
-  },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
