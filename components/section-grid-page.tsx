@@ -132,8 +132,8 @@ export function SectionGridPage() {
             <p className="mb-7 text-[11px] font-bold tracking-[0.18em] text-[#db6049]">{t["hero.eyebrow"]}</p>
             <h1 className="max-w-3xl whitespace-pre-line text-[clamp(2.25rem,3.8vw,3.75rem)] font-medium leading-[1.32] tracking-[-0.045em] text-pretty">{t["hero.title"]}</h1>
             <div className="mt-9 flex flex-wrap gap-3">
-              <a href="#skills" className="inline-flex items-center gap-2 rounded-full bg-[#1e2a38] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#db6049] dark:bg-white dark:text-[#0f1724] dark:hover:bg-[#db6049]">{t["hero.ctaPrimary"]}<ArrowDownRight size={16} /></a>
-              <a href="#contact" className="inline-flex items-center gap-2 rounded-full border border-[#1e2a38]/20 px-5 py-3 text-sm font-semibold transition hover:border-[#1e2a38] dark:border-white/20 dark:hover:border-white/60">{t["hero.ctaSecondary"]}<ArrowUpRight size={16} /></a>
+              <a href="#skills" className="inline-flex items-center gap-2 rounded-full bg-[#1e2a38] px-5 py-3 text-sm font-semibold text-[#f7f3ec] transition hover:bg-[#db6049] dark:bg-white dark:text-[#0f1724] dark:hover:bg-[#db6049]">{t["hero.ctaPrimary"]}<ArrowDownRight size={16} /></a>
+              <a href="#contact" className="inline-flex items-center gap-2 rounded-full border border-[#1e2a38]/20 px-5 py-3 text-sm font-semibold text-[#1e2a38] transition hover:border-[#1e2a38] dark:border-white/20 dark:text-white dark:hover:border-white/60">{t["hero.ctaSecondary"]}<ArrowUpRight size={16} /></a>
             </div>
           </div>
           <div className="relative mx-auto aspect-square w-full max-w-[25rem] lg:col-span-5">
