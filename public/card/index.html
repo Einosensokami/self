@@ -80,7 +80,7 @@
                 <a class="quick" href="https://www.instagram.com/einosensokami/" target="_blank" rel="noopener" onclick="event.stopPropagation(); window.open(this.href,'_blank'); return false;"><i class="fa-brands fa-instagram"></i>Instagram</a>
                 <a class="quick" href="https://www.facebook.com/einosensokami" target="_blank" rel="noopener" onclick="event.stopPropagation(); window.open(this.href,'_blank'); return false;"><i class="fa-brands fa-facebook"></i>Facebook</a>
               </div>
-              <button class="save-btn" id="saveVcard" type="button"><i class="fa-solid fa-address-card mr-2"></i>儲存至手機聯絡人 · Save Contact (.vcf)</button>
+
               <p class="section-label" style="margin-top:14px;">Selected builds · 專案亮點</p>
               <div class="projects">
                 <div class="project"><strong><i class="fa-solid fa-chart-line"></i>AI Stock Assistant</strong><p>Agentic market research workflow</p></div>
@@ -132,7 +132,7 @@
       if(window.QRCode)new QRCode(document.getElementById('qrcode'),{text:PORTFOLIO,width:174,height:174,colorDark:'#07111f',colorLight:'#ffffff',correctLevel:QRCode.CorrectLevel.H});
       else document.getElementById('qrcode').innerHTML='<a href="'+PORTFOLIO+'" style="color:#07111f">Open portfolio</a>';
       document.getElementById('copyEmail')?.addEventListener('click',async()=>{try{await navigator.clipboard.writeText(EMAIL);toast('Email 已複製 · Copied!')}catch{location.href='mailto:'+EMAIL}});
-      document.getElementById('saveVcard').addEventListener('click',()=>{
+      document.getElementById('saveVcard')?.addEventListener('click',()=>{
         const vcard=['BEGIN:VCARD','VERSION:3.0','N:Einosensokami;;;;','FN:永恆戰神 (Einosensokami)','ORG:NUTC AI Department','TITLE:AI Application Planner','EMAIL;TYPE=INTERNET:'+EMAIL,'URL;TYPE=Portfolio:'+PORTFOLIO,'URL;TYPE=GitHub:https://github.com/Einosensokami','URL;TYPE=Discord:https://discord.com/users/830789294679523358','NOTE:AI Agents / Bug Bounty / Full Stack / Machine Learning','END:VCARD'].join('\r\n');
         const url=URL.createObjectURL(new Blob([vcard],{type:'text/vcard;charset=utf-8'}));const a=document.createElement('a');a.href=url;a.download='Einosensokami.vcf';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);toast('聯絡人檔案已下載 · Contact saved');
       });
