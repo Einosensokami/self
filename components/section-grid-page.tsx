@@ -3,79 +3,7 @@
 import { ArrowDownRight, ArrowUpRight, ExternalLink, Mail } from "lucide-react";
 import { useLang } from "@/components/lang-provider";
 import { useReveal } from "@/hooks/use-reveal";
-
-const legacyOpenSourceProjects = [
-  {
-    name: "AI-powered Stock Prediction Assistant",
-    description: "以 Python 實作的 AI 股票預測助理。",
-    language: "Python",
-    type: "個人開源",
-    url: "https://github.com/Einosensokami/AI-powered_stock_prediction_assistant",
-  },
-  {
-    name: "Web-Ferret-Pet",
-    description: "使用 HTML、CSS、JavaScript 製作的去背白雪貂網頁桌寵。",
-    language: "JavaScript",
-    type: "個人開源",
-    url: "https://github.com/Einosensokami/Web-Ferret-Pet",
-  },
-  {
-    name: "Vision-Aided AR Navigation Agent",
-    description: "結合 OpenCV 與 AI Agent，協助視障者及銀髮族進行環境感知與安全導航。",
-    language: "Python",
-    type: "參與開源",
-    url: "https://github.com/Einosensokami/vision_nav_agent",
-  },
-  {
-    name: "AgentAQI",
-    description: "以台灣空氣品質為核心，提供個人化健康資訊與 AI Agent 輔助服務。",
-    language: "Python",
-    type: "參與開源",
-    url: "https://github.com/Tunai-0511/aqi-tw-personal",
-  },
-];
-
-const portfolioProjects = [
-  {
-    name: "AI-powered Stock Prediction Assistant",
-    description: "結合資料分析與機器學習的股票趨勢預測助理，將模型結果整理成易於理解的決策資訊。",
-    language: "Python · Machine Learning",
-    type: "AI APPLICATION",
-    url: "https://github.com/Einosensokami/AI-powered_stock_prediction_assistant",
-  },
-  {
-    name: "Web-Ferret-Pet",
-    description: "以互動為核心的網頁電子寵物，透過動畫與前端狀態管理打造輕鬆、有生命感的瀏覽體驗。",
-    language: "HTML · CSS · JavaScript",
-    type: "FRONTEND EXPERIENCE",
-    url: "https://github.com/Einosensokami/Web-Ferret-Pet",
-  },
-  {
-    name: "Vision-Aided AR Navigation Agent",
-    description: "整合電腦視覺與 AI Agent 的擴增實境導航概念，探索即時環境辨識與行動指引。",
-    language: "Python · OpenCV · AI Agent",
-    type: "COMPUTER VISION",
-    url: "https://github.com/Einosensokami/vision_nav_agent",
-  },
-  {
-    name: "AgentAQI",
-    description: "以 AI Agent 協助查詢與解讀空氣品質資訊，讓環境數據更容易轉化為日常行動。",
-    language: "Python · AI Agent",
-    type: "DATA FOR PEOPLE",
-    url: "https://github.com/Tunai-0511/aqi-tw-personal",
-  },
-];
-
-const openSourceProjects = [
-  ...portfolioProjects,
-  {
-    name: "Computer Use MCP Integration",
-    description: "整合 Computer Use MCP，讓 AI 能安全地操作桌面環境，完成應用程式啟動、畫面確認與工作流程自動化。",
-    language: "MCP · Computer Use · Automation",
-    type: "AI AUTOMATION",
-    url: "https://github.com/Einosensokami/windows-computer-use-mcp",
-  },
-];
+import { githubRepositoriesUrl, projects } from "@/lib/projects";
 
 const favoriteGames = [
   { name: "原神", image: "game-icons/genshin-impact.jpg" },
@@ -88,7 +16,7 @@ const favoriteGames = [
 ];
 
 export function SectionGridPage() {
-  const { t } = useLang();
+  const { t, lang } = useLang();
   useReveal();
   const experiences: Array<{
     period: string;
@@ -125,12 +53,13 @@ export function SectionGridPage() {
           "linear-gradient(to bottom, rgb(247 243 236 / .45), rgb(247 243 236 / .68) 58%, rgb(247 243 236 / .9)), url('portfolio-landscape.png')",
       }}
     />
-    <main className="relative z-10">
+    <div className="relative z-10">
       <section className="relative px-5 pb-16 pt-28 sm:px-8 lg:px-12 lg:pt-36">
         <div className="mx-auto grid max-w-6xl items-end gap-12 lg:grid-cols-12">
           <div className="lg:col-span-7">
             <p className="mb-7 text-[11px] font-bold tracking-[0.18em] text-[#db6049]">{t["hero.eyebrow"]}</p>
             <h1 className="max-w-3xl whitespace-pre-line text-[clamp(2.25rem,3.8vw,3.75rem)] font-medium leading-[1.32] tracking-[-0.045em] text-pretty">{t["hero.title"]}</h1>
+            <p className="mt-6 max-w-xl text-lg leading-8 text-[#50606f] dark:text-white/60">{t["hero.subtitle"]}</p>
             <div className="mt-9 flex flex-wrap gap-3">
               <a href="#skills" className="inline-flex items-center gap-2 rounded-full bg-[#1e2a38] px-5 py-3 text-sm font-semibold text-[#f7f3ec] transition hover:bg-[#db6049] dark:bg-white dark:text-[#0f1724] dark:hover:bg-[#db6049]">{t["hero.ctaPrimary"]}<ArrowDownRight size={16} /></a>
               <a href="#contact" className="inline-flex items-center gap-2 rounded-full border border-[#1e2a38]/20 px-5 py-3 text-sm font-semibold text-[#1e2a38] transition hover:border-[#1e2a38] dark:border-white/20 dark:text-white dark:hover:border-white/60">{t["hero.ctaSecondary"]}<ArrowUpRight size={16} /></a>
@@ -149,9 +78,9 @@ export function SectionGridPage() {
 
       <section id="about" className="reveal px-5 py-24 sm:px-8 lg:px-12 lg:py-32"><div className="mx-auto max-w-6xl"><div className="grid gap-5 lg:grid-cols-12"><p className="section-label lg:col-span-3">{t["about.label"]}</p><div className="lg:col-span-9"><h2 className="text-4xl font-medium tracking-[-.05em] sm:text-6xl whitespace-pre-line">{t["about.title"]}</h2><p className="mt-6 max-w-2xl text-lg leading-8 text-[#50606f] dark:text-white/60">{t["about.body"]}</p></div></div></div></section>
 
-      <section id="skills" className="reveal px-5 py-24 sm:px-8 lg:px-12 lg:py-32"><div className="mx-auto max-w-6xl"><div className="grid gap-5 lg:grid-cols-12"><p className="section-label lg:col-span-3">01 / OPEN SOURCE</p><div className="lg:col-span-9"><h2 className="text-4xl font-medium tracking-[-.05em] sm:text-6xl">開源專案</h2><p className="mt-4 text-[#50606f] dark:text-white/60">我在 GitHub 上實作、分享與參與的開源作品。</p></div></div><div className="mt-14 grid gap-4 sm:grid-cols-2">{openSourceProjects.map((project, index) => <a key={project.name} href={project.url} target="_blank" rel="noreferrer" className="group rounded-3xl bg-white/45 p-7 shadow-sm backdrop-blur-sm transition hover:-translate-y-1 hover:bg-white/70 dark:bg-white/5 dark:hover:bg-white/10 sm:p-9"><div className="flex items-start justify-between"><span className="text-sm font-semibold text-[#1e2a38]/50 dark:text-white/30">0{index + 1}</span><ExternalLink size={20} className="transition group-hover:-translate-y-1 group-hover:translate-x-1" /></div><p className="mt-10 text-xs font-bold tracking-[.14em] text-[#db6049]">{project.type}</p><h3 className="mt-3 text-2xl font-semibold tracking-[-.035em]">{project.name}</h3><p className="mt-4 text-sm leading-6 text-[#50606f] dark:text-white/50">{project.description}</p><p className="mt-8 text-xs font-bold tracking-[.14em] text-[#db6049]">{project.language}</p></a>)}</div></div></section>
+      <section id="skills" className="px-5 py-24 sm:px-8 lg:px-12 lg:py-32"><div className="mx-auto max-w-6xl"><div className="grid gap-5 lg:grid-cols-12"><p className="section-label lg:col-span-3">{t["skills.label"]}</p><div className="lg:col-span-9"><h2 className="text-4xl font-medium tracking-[-.05em] sm:text-6xl">{t["skills.title"]}</h2><p className="mt-4 text-[#50606f] dark:text-white/60">{t["skills.subtitle"]}</p><a href={githubRepositoriesUrl} target="_blank" rel="noreferrer" className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[#db6049] hover:underline">{t["projects.viewAll"]}<ArrowUpRight size={16} /></a></div></div><div className="mt-14 grid gap-4 sm:grid-cols-2">{projects.map((project, index) => <a key={project.repo} href={`https://github.com/Einosensokami/${project.repo}`} target="_blank" rel="noreferrer" className="reveal group rounded-3xl bg-white/45 p-7 shadow-sm backdrop-blur-sm transition hover:-translate-y-1 hover:bg-white/70 dark:bg-white/5 dark:hover:bg-white/10 sm:p-9"><div className="flex items-start justify-between"><span className="text-sm font-semibold text-[#1e2a38]/50 dark:text-white/30">{String(index + 1).padStart(2, "0")}</span><ExternalLink size={20} className="transition group-hover:-translate-y-1 group-hover:translate-x-1" /></div><p className="mt-10 text-xs font-bold tracking-[.14em] text-[#db6049]">{project.category}</p><h3 className="mt-3 text-2xl font-semibold tracking-[-.035em]">{project.name[lang]}</h3><p className="mt-4 text-sm leading-6 text-[#50606f] dark:text-white/50">{project.description[lang]}</p><p className="mt-8 text-xs font-bold tracking-[.14em] text-[#db6049]">{project.stack}</p></a>)}</div></div></section>
 
-      <section id="games" className="reveal px-5 py-24 sm:px-8 lg:px-12 lg:py-32"><div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-12"><p className="section-label lg:col-span-3">02 / 喜歡的遊戲</p><div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:col-span-9 xl:grid-cols-4">{favoriteGames.map((game) => <article key={game.name} className="group overflow-hidden rounded-3xl bg-white/45 p-3 shadow-sm backdrop-blur-sm dark:bg-white/5"><img src={game.image} alt={`${game.name} 應用程式圖示`} className="aspect-square w-full rounded-2xl object-cover transition duration-300 group-hover:scale-[1.03]" /><p className="px-2 pb-2 pt-4 text-sm font-semibold tracking-[-.02em]">{game.name}</p></article>)}</div></div></section>
+      <section id="games" className="reveal px-5 py-24 sm:px-8 lg:px-12 lg:py-32"><div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-12"><p className="section-label lg:col-span-3">{t["games.label"]}</p><div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:col-span-9 xl:grid-cols-4">{favoriteGames.map((game) => <article key={game.name} className="group overflow-hidden rounded-3xl bg-white/45 p-3 shadow-sm backdrop-blur-sm dark:bg-white/5"><img src={game.image} alt={`${game.name} 應用程式圖示`} className="aspect-square w-full rounded-2xl object-cover transition duration-300 group-hover:scale-[1.03]" /><p className="px-2 pb-2 pt-4 text-sm font-semibold tracking-[-.02em]">{game.name}</p></article>)}</div></div></section>
 
       <section id="experience" className="reveal px-5 py-24 sm:px-8 lg:px-12 lg:py-32"><div className="mx-auto max-w-6xl"><div className="grid gap-5 lg:grid-cols-12"><p className="section-label lg:col-span-3">{t["experience.label"]}</p><h2 className="text-4xl font-medium tracking-[-.05em] sm:text-6xl lg:col-span-9">{t["experience.title"]}</h2></div><ol className="mt-16 border-t border-[#1e2a38]/20 dark:border-white/20">{experiences.map((item, index) => <li key={item.role} className="grid gap-4 border-b border-[#1e2a38]/20 py-8 dark:border-white/20 md:grid-cols-12"><p className="text-sm font-semibold md:col-span-2">{item.period}</p><div className="md:col-span-6"><h3 className="text-xl font-semibold tracking-[-.03em]">{item.role}</h3><p className="mt-2 text-sm text-[#50606f] dark:text-white/60">{item.org}</p></div><div className="md:col-span-4 flex flex-col justify-between"><p className="text-sm leading-6 text-[#50606f] dark:text-white/50">{item.desc}</p>{item.links && (<div className="mt-3 flex flex-wrap gap-2">{item.links.map((link) => (<a key={link.url} href={link.url} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 rounded-full border border-[#1e2a38]/20 px-3 py-1.5 text-xs font-semibold text-[#1e2a38] transition hover:border-[#db6049] hover:text-[#db6049] dark:border-white/20 dark:text-white/80 dark:hover:border-[#db6049] dark:hover:text-[#db6049]"><span>{link.title}</span><ExternalLink size={12} /></a>))}</div>)}</div><span className="hidden text-right text-sm text-[#7a8490] dark:text-white/30 md:block">0{index + 1}</span></li>)}</ol></div></section>
 
@@ -169,7 +98,7 @@ export function SectionGridPage() {
         </div>
       </div>
     </div></section>
-    </main>
+    </div>
     <footer className="relative z-10 bg-[#1e2a38] px-5 py-6 text-xs text-white/55 sm:px-8 lg:px-12 dark:bg-[#0a0f1a]"><div className="mx-auto flex max-w-6xl justify-between"><span>© {new Date().getFullYear()} EINOSENSOKAMI</span><span>{t["footer.note"]}</span></div></footer>
   </div>;
 }

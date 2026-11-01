@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <>
       <SectionHeader />
-      <main id="top" className="flex-1">
+      <main className="flex-1">
         <SectionGridPage />
       </main>
       <ScrollToTop />

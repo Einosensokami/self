@@ -16,13 +16,13 @@ html:not(.dark) .portfolio-scene { opacity: 0.72; }
 html:not(.dark) .text-\[\#50606f\] { color: #334657; }
 html:not(.dark) .text-\[\#7a8490\] { color: #4c5d6c; }
 html:not(.dark) .section-label { color: #405363; }
-#top > main > section:first-child > div:first-child > div:last-child > span {
+#top > div > section:first-child > div:first-child > div:last-child > span {
   z-index: 10;
   background: #1e2a38;
   color: #f7f3ec;
   box-shadow: 0 10px 24px rgb(30 42 56 / .28);
 }
-.dark #top > main > section:first-child > div:first-child > div:last-child > span {
+.dark #top > div > section:first-child > div:first-child > div:last-child > span {
   background: #f6d6b9;
   color: #1e2a38;
 }

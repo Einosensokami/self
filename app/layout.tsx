@@ -5,10 +5,10 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Einosensokami — AI Application Planner",
-  description: "Einosensokami's portfolio — AI application planning, workflow design, and implementation. 喜歡站在需求與技術之間，用 AI 打造更簡潔可靠的解法。",
+  description: "Einosensokami 的作品集：AI Agent、MCP 整合、LINE 產品原型、Python 資料分析，以及 VS Code 與 Windows 開發工具。",
   openGraph: {
     title: "Einosensokami — AI Application Planner",
-    description: "AI application planning, workflow design, and implementation portfolio.",
+    description: "AI agents, MCP integrations, LINE prototypes, Python data projects, and developer tools by Einosensokami.",
     type: "website",
     locale: "zh_TW",
     alternateLocale: "en_US",
@@ -17,9 +17,9 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Einosensokami — AI Application Planner",
-    description: "AI application planning, workflow design, and implementation portfolio.",
+    description: "AI agents, MCP integrations, LINE prototypes, Python data projects, and developer tools by Einosensokami.",
   },
-  keywords: ["Einosensokami", "AI", "portfolio", "Taiwan", "workflow", "Next.js"],
+  keywords: ["Einosensokami", "AI Agent", "MCP", "portfolio", "Taiwan", "Python", "VS Code", "LINE MINI App"],
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
