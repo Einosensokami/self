@@ -2,15 +2,27 @@ import type { Lang } from "@/lib/i18n";
 
 type Project = {
   repo: string;
+  url?: string;
   name: Record<Lang, string>;
   description: Record<Lang, string>;
   stack: string;
   category: string;
 };
 
-// Curated from the public repository READMEs on 2026-11-01.
+// Project summaries are curated from the repositories' README files.
 // Forks are excluded: a fork alone does not establish a contribution.
 export const projects: Project[] = [
+  {
+    repo: "sitecompass",
+    url: "https://sitecompass.tunai0511edu.workers.dev",
+    name: { zh: "址南針 SiteCompass", en: "SiteCompass · Storefront Intelligence" },
+    description: {
+      zh: "榮獲 2026 第 31 屆 InnoServe 商業治理 AI 創新組第一名。整合商工登記、稅籍與人口等開放資料，建立店面門牌履歷並估算三年收店風險，協助創業者在簽約前評估選址。",
+      en: "First Place, 2026 InnoServe Commercial Governance AI Innovation. Combines business-registration, tax, and population data to build storefront histories and estimate three-year closure risk before a lease is signed.",
+    },
+    stack: "TypeScript · React 19 · MapLibre GL · Cloudflare Workers · AI Agents",
+    category: "INNOSERVE 2026 · FIRST PLACE",
+  },
   {
     repo: "cathay-intent-sentinel",
     name: { zh: "Cathay IntentSentinel 國泰意圖哨兵", en: "Cathay IntentSentinel" },
