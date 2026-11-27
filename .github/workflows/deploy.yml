@@ -34,6 +34,9 @@ jobs:
           GITHUB_REPOSITORY: ${{ github.repository }}
         run: npm run build
 
+      - name: Serve the digital card at the Pages domain root
+        run: cp ./out/card/index.html ./out/index.html
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
